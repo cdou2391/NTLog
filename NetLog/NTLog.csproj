@@ -108,7 +108,6 @@
     <Compile Include="Organization.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SendEmail.cs" />
     <Compile Include="Staff.cs" />
     <Compile Include="System\KeyPressEventHandler.cs" />
     <Compile Include="Validation.cs" />
