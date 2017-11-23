@@ -93,13 +93,9 @@ namespace NetLog
             string orgName;
             string orgID;
 
-
-
             GenerateClientNumber gen = new GenerateClientNumber();
             string clientNumber = gen.getClientNumber();
 
-            
-            
             bool message = valid.validation(name,surname,email, number,address, floorNo, buildingName, compType,make,model,
                                         serialNum);
             
@@ -210,8 +206,6 @@ namespace NetLog
             UpdatecomboUnikNo.SelectedIndex = -1;
             txtNewCompany.Clear();
             updateTxtDeviceName.Clear();
-        
-
         }
 
        
@@ -222,7 +216,6 @@ namespace NetLog
 
         private void button7_Click(object sender, EventArgs e)
         {
-            
             string refNum= recComboUnikNo.Text;
             int i;
             if ((refNum.ToString().Length > 2 ))
@@ -341,8 +334,6 @@ namespace NetLog
                             catch (Exception)
                             {
                             }
-
-
                         }
                     }
                  }
@@ -432,9 +423,7 @@ namespace NetLog
                         cmd.Parameters.AddWithValue("@floorNo", updateTxtFloorNo.Text);
                         
                         cmd.ExecuteNonQuery();
-                        
                     }
-
                 }
                 LoadClient();
                 MessageBox.Show("Information updated");
@@ -533,8 +522,6 @@ namespace NetLog
                         organisation.ID = (int)reader["orgID"];
                         organisation.Text = reader["name"].ToString();
                         comboOrganisation.Items.Add(organisation);
-
-                        
                     }
                     reader.Close();
                 }
@@ -565,14 +552,10 @@ namespace NetLog
                         string fullName = clientSurName.Text + " " + clientName.Text;
                         recComboUnikNo.Items.Add(fullName);
                         UpdatecomboUnikNo.Items.Add(fullName);
-
-                       
                     }
                     reader.Close();
-
                 }
             }
-
         }
         private void LoadCalls()
         {
@@ -590,13 +573,10 @@ namespace NetLog
                         refNo.Text = reader["referenceNumber"].ToString();
                         locComboUnikNo.Items.Add(refNo);
                         closeComboUnikNo.Items.Add(refNo);
-
-                        
                     }
                     reader.Close();
                 }
             }
-
         }
         private void LoadStaffUser()
         {
@@ -611,14 +591,11 @@ namespace NetLog
                         ComboboxItem staffEmail = new ComboboxItem();
                         staffEmail.Text = reader["email"].ToString();
                         recComboAssignedTo.Items.Add(staffEmail);
-
-                        
                     }
                     reader.Close();
                 }
             }
         }
-
         private void frmHome_Load(object sender, EventArgs e)
         {
             LoadOrganisation();
@@ -641,7 +618,6 @@ namespace NetLog
             regRadMale.Enabled = false;
             regRadFemale.Enabled = false;
             regTxtOrgEmail.Enabled = false;
-
         }
         
         private void button6_Click(object sender, EventArgs e)
@@ -666,20 +642,16 @@ namespace NetLog
                             cmd.ExecuteNonQuery();
                         }
                         conn.Close();
-                    
                     }
 
                     LoadOrganisation();
                     comboOrganisation.Text = txtNewCompany.Text;
                     MessageBox.Show("New Organisation succesfully saved!");
-               
             }
             else
             {
                 MessageBox.Show("Please fill in all the fields with the correct information");
             }
-
-            
         }
 
         private void comboOrganisation_SelectedIndexChanged(object sender, EventArgs e)
@@ -741,7 +713,6 @@ namespace NetLog
                 if (closeRadClose.Checked == true)
                 {
                     status = "Closed";
-
                 }
                 else
                 {
@@ -771,7 +742,6 @@ namespace NetLog
 
 
                         cmd.ExecuteNonQuery();
-
                     }
                 }
                 MessageBox.Show("Call sucessfully " + status + "!");
@@ -811,8 +781,6 @@ namespace NetLog
                                 {
                                     updateRadFemale.Checked = true;
                                 }
-                                
-
                                 reader.Close();
                             }
                             using (SqlCommand cmd2 = new SqlCommand("SELECT * from devices where deviceID ='" + id + "'", conn))
@@ -826,7 +794,6 @@ namespace NetLog
 
                                 reader2.Close();
                             }
-
                         }
                         catch (InvalidOperationException)
                         {
@@ -936,7 +903,6 @@ namespace NetLog
 
             }
         }
-
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
