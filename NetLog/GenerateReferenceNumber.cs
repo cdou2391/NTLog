@@ -12,7 +12,7 @@ namespace NetLog
     {
         string referenceNum;
         public string GetUniqueKey()
-        { using (SqlConnection conn = new SqlConnection(Database.connectionStr))
+        { using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("SELECT COUNT(*) from calls", conn);

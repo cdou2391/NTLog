@@ -13,7 +13,7 @@ namespace NetLog
         string clientNumber;
         public string getClientNumber()
         {
-            using (SqlConnection conn = new SqlConnection(Database.connectionStr))
+            using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("SELECT COUNT(*) from client", conn);

@@ -120,7 +120,7 @@ namespace NetLog
                         gender = "F";
                     }
 
-                    using (SqlConnection conn = new SqlConnection(Database.connectionStr))
+                    using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
                     {
                         conn.Open();
                     
@@ -158,7 +158,7 @@ namespace NetLog
                             cmd.ExecuteNonQuery();
 
                         }
-                        LoadClient();
+                        //LoadClient();
 
 
                         MessageBox.Show("New client succesfully registered!");
@@ -223,7 +223,7 @@ namespace NetLog
                 if (int.TryParse(refNum, out i))
                 {
                     int id = Convert.ToInt32(refNum);
-                    using (SqlConnection conn = new SqlConnection(Database.connectionStr))
+                    using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
                     {
                         conn.Open();
                         try {
@@ -253,7 +253,7 @@ namespace NetLog
                 {
                     string clientName = refNum;
                     string inputName = clientName.Substring(clientName.IndexOf(' ') + 1);
-                    using (SqlConnection conn = new SqlConnection(Database.connectionStr))
+                    using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
                     {
                         conn.Open();
                         try {
@@ -296,7 +296,7 @@ namespace NetLog
                 DataTable table = new DataTable();
                 try
                 {
-                    using (SqlConnection conn = new SqlConnection(Database.connectionStr))
+                    using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
                     {
                         conn.Open();
 
@@ -355,7 +355,7 @@ namespace NetLog
             {
                 try
                 {
-                    using (SqlConnection conn = new SqlConnection(Database.connectionStr))
+                    using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
                     {
                         conn.Open();
                         using (SqlCommand cmd = new SqlCommand("SELECT * from calls where referenceNumber='" + refNum + "'", conn))
@@ -406,7 +406,7 @@ namespace NetLog
                 }
                 
 
-                using (SqlConnection conn = new SqlConnection(Database.connectionStr))
+                using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
                 {
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand("UPDATE client SET name=@name,surname=@surname,gender=@gender,email=@email,contactNumber=@contactNumber,address=@address,building=@building,floorNo=@floorNo WHERE clientNumber = '" + refNum + "' or name ='"+inputName+"'", conn))
@@ -425,7 +425,7 @@ namespace NetLog
                         cmd.ExecuteNonQuery();
                     }
                 }
-                LoadClient();
+                //LoadClient();
                 MessageBox.Show("Information updated");
             }
             else
@@ -465,7 +465,7 @@ namespace NetLog
             }
             else
             {
-                using (SqlConnection conn = new SqlConnection(Database.connectionStr))
+                using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
                 {
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand("INSERT INTO calls(referenceNumber,type,staffEmail,assignedBy,priority,description,dateLogged,status,dateResolved) VALUES(@referenceNumber,@type,@staffEmail,@assignedBy,@priority,@description,@dateLogged,@status,@dateResolved) ", conn))
@@ -483,7 +483,7 @@ namespace NetLog
                         cmd.ExecuteNonQuery();
                     }
                 }
-                LoadCalls();
+                //LoadCalls();
                 string techEmail = recComboAssignedTo.Text;
                 string clientEmail = recTxtEmail.Text;
                 string clientNames = recTxtSurname.Text + " " + recTxtName.Text;
@@ -503,87 +503,87 @@ namespace NetLog
             this.Close();
         }
 
-        private void LoadOrganisation()
-        {
-            comboOrganisation.Items.Clear();
-            comboOrganisation.Items.Add("New Organisation");
-            staffNames.Text = Globals.Staff.Name + " " + Globals.Staff.Surname;
+        //private void LoadOrganisation()
+        //{
+        //    comboOrganisation.Items.Clear();
+        //    comboOrganisation.Items.Add("New Organisation");
+        //    staffNames.Text = Globals.Staff.Name + " " + Globals.Staff.Surname;
 
-            using (SqlConnection conn = new SqlConnection(Database.connectionStr))
-            {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT * FROM organisation", conn))
-                {
-                    SqlDataReader reader = cmd.ExecuteReader();
+        //    using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
+        //    {
+        //        conn.Open();
+        //        using (SqlCommand cmd = new SqlCommand("SELECT * FROM Departments", conn))
+        //        {
+        //            SqlDataReader reader = cmd.ExecuteReader();
 
-                    while (reader.Read())
-                    {
-                        ComboboxItem organisation = new ComboboxItem();
-                        organisation.ID = (int)reader["orgID"];
-                        organisation.Text = reader["name"].ToString();
-                        comboOrganisation.Items.Add(organisation);
-                    }
-                    reader.Close();
-                }
-            }
-        }
-        private void LoadClient()
-        {
-            recComboUnikNo.Items.Clear();
-            UpdatecomboUnikNo.Items.Clear();
-            using (SqlConnection conn = new SqlConnection(Database.connectionStr))
-            {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT * FROM client", conn))
-                {
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        ComboboxItem clientNo = new ComboboxItem();
-                        clientNo.Text = reader["clientNumber"].ToString();
-                        clientNo.ID = Convert.ToInt32(reader["organisationID"]);
-                        recComboUnikNo.Items.Add(clientNo);
-                        UpdatecomboUnikNo.Items.Add(clientNo);
-                        ComboboxItem clientName = new ComboboxItem();
-                        ComboboxItem clientSurName = new ComboboxItem();
-                        clientName.ID = Convert.ToInt32(reader["organisationID"]);
-                        clientName.Text = reader["name"].ToString();
-                        clientSurName.Text = reader["surname"].ToString();
-                        string fullName = clientSurName.Text + " " + clientName.Text;
-                        recComboUnikNo.Items.Add(fullName);
-                        UpdatecomboUnikNo.Items.Add(fullName);
-                    }
-                    reader.Close();
-                }
-            }
-        }
-        private void LoadCalls()
-        {
-            locComboUnikNo.Items.Clear();
-            closeComboUnikNo.Items.Clear();
-            using (SqlConnection conn = new SqlConnection(Database.connectionStr))
-            {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT * FROM calls", conn))
-                {
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        ComboboxItem refNo = new ComboboxItem();
-                        refNo.Text = reader["referenceNumber"].ToString();
-                        locComboUnikNo.Items.Add(refNo);
-                        closeComboUnikNo.Items.Add(refNo);
-                    }
-                    reader.Close();
-                }
-            }
-        }
+        //            while (reader.Read())
+        //            {
+        //                ComboboxItem organisation = new ComboboxItem();
+        //                organisation.ID = (int)reader["orgID"];
+        //                organisation.Text = reader["name"].ToString();
+        //                comboOrganisation.Items.Add(organisation);
+        //            }
+        //            reader.Close();
+        //        }
+        //    }
+        //}
+        //private void LoadClient()
+        //{
+        //    recComboUnikNo.Items.Clear();
+        //    UpdatecomboUnikNo.Items.Clear();
+        //    using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
+        //    {
+        //        conn.Open();
+        //        using (SqlCommand cmd = new SqlCommand("SELECT * FROM client", conn))
+        //        {
+        //            SqlDataReader reader = cmd.ExecuteReader();
+        //            while (reader.Read())
+        //            {
+        //                ComboboxItem clientNo = new ComboboxItem();
+        //                clientNo.Text = reader["clientNumber"].ToString();
+        //                clientNo.ID = Convert.ToInt32(reader["organisationID"]);
+        //                recComboUnikNo.Items.Add(clientNo);
+        //                UpdatecomboUnikNo.Items.Add(clientNo);
+        //                ComboboxItem clientName = new ComboboxItem();
+        //                ComboboxItem clientSurName = new ComboboxItem();
+        //                clientName.ID = Convert.ToInt32(reader["organisationID"]);
+        //                clientName.Text = reader["name"].ToString();
+        //                clientSurName.Text = reader["surname"].ToString();
+        //                string fullName = clientSurName.Text + " " + clientName.Text;
+        //                recComboUnikNo.Items.Add(fullName);
+        //                UpdatecomboUnikNo.Items.Add(fullName);
+        //            }
+        //            reader.Close();
+        //        }
+        //    }
+        //}
+        //private void LoadCalls()
+        //{
+        //    locComboUnikNo.Items.Clear();
+        //    closeComboUnikNo.Items.Clear();
+        //    using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
+        //    {
+        //        conn.Open();
+        //        using (SqlCommand cmd = new SqlCommand("SELECT * FROM Tickets", conn))
+        //        {
+        //            SqlDataReader reader = cmd.ExecuteReader();
+        //            while (reader.Read())
+        //            {
+        //                ComboboxItem refNo = new ComboboxItem();
+        //                refNo.Text = reader["referenceNumber"].ToString();
+        //                locComboUnikNo.Items.Add(refNo);
+        //                closeComboUnikNo.Items.Add(refNo);
+        //            }
+        //            reader.Close();
+        //        }
+        //    }
+        //}
         private void LoadStaffUser()
         {
-            using (SqlConnection conn = new SqlConnection(Database.connectionStr))
+            using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
             {
                 conn.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT * FROM staffUser", conn))
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Staff", conn))
                 {
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
@@ -598,9 +598,9 @@ namespace NetLog
         }
         private void frmHome_Load(object sender, EventArgs e)
         {
-            LoadOrganisation();
-            LoadClient();
-            LoadCalls();
+            //LoadOrganisation();
+            //LoadClient();
+            //LoadCalls();
             LoadStaffUser();
             regBtnClear.Enabled = false;
             regBtnSave.Enabled = false;
@@ -629,7 +629,7 @@ namespace NetLog
             if ((txtNewCompany.Text != "") || (regTxtOrgEmail.Text != ""))
             {
                
-                    using (SqlConnection conn = new SqlConnection(Database.connectionStr))
+                    using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
                     {
                         conn.Open();
                         using (SqlCommand cmd = new SqlCommand("INSERT INTO organisation(name,email,password) VALUES(@name,@email,@password) ", conn))
@@ -644,7 +644,7 @@ namespace NetLog
                         conn.Close();
                     }
 
-                    LoadOrganisation();
+                    //LoadOrganisation();
                     comboOrganisation.Text = txtNewCompany.Text;
                     MessageBox.Show("New Organisation succesfully saved!");
             }
@@ -730,7 +730,7 @@ namespace NetLog
                 {
                     callDateResolved = "Still in progress";
                 }
-                using (SqlConnection conn = new SqlConnection(Database.connectionStr))
+                using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
                 {
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand("update calls set status= @callStatus ,description=@statusDescription, dateResolved= @dateResolved where referenceNumber = '" + refNum + "'", conn))
@@ -757,7 +757,7 @@ namespace NetLog
                 if (int.TryParse(refNum, out i))
                 {
                     int id = Convert.ToInt32(refNum);
-                    using (SqlConnection conn = new SqlConnection(Database.connectionStr))
+                    using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
                     {
                         conn.Open();
                         try {
@@ -806,7 +806,7 @@ namespace NetLog
                     string clientName = refNum;
                     string inputName = clientName.Substring(clientName.IndexOf(' ') + 1);
                     string userID = "";
-                    using (SqlConnection conn = new SqlConnection(Database.connectionStr))
+                    using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
                     {
                         conn.Open();
                         try {
@@ -864,7 +864,7 @@ namespace NetLog
         private void locBtnShowAll_Click(object sender, EventArgs e)
         {
             DataTable table = new DataTable();
-            using (SqlConnection conn = new SqlConnection(Database.connectionStr))
+            using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
             {
                 conn.Open();
                 using (conn)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NetLog
 {
-    class Organization
+    class Departments
     {
         public int ID { get; set; }
         public string Name { get; set; }

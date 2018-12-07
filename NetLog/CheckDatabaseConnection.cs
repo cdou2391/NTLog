@@ -1,33 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
-
+﻿using System.Data.SqlClient;
 
 namespace NetLog
 {
     class CheckDatabaseConnection
     {
-        public bool checkDatabase()
+        public static string connectionStr = @"Data Source=DATACENTER03\CEDRICDB;Initial Catalog = TicketsDB; Integrated Security = True";
+        public static SqlConnection connection = new SqlConnection(connectionStr);
+        public string checkDatabase()
         {
-            bool answer=true;
-            using (var conn = new SqlConnection(Database.connectionStr))
+            string answer = null;
+            using (var conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
             {
                 try
                 {
                     conn.Open();
-                    answer = true;
+                    answer = "True";
                 }
-                catch(SqlException)
+                catch (SqlException sql)
                 {
-                    answer = false;
+                    answer = "False" + sql.Message;
                 }
-
             }
-            
-           
             return answer;
         }
     }

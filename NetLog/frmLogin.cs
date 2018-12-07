@@ -18,7 +18,7 @@ namespace NetLog
         public frmLogin()
         {
             InitializeComponent();
-            textBox1.Focus();
+            txtEmail.Focus();
             
         }
         
@@ -30,78 +30,121 @@ namespace NetLog
 
         private void btnLog_Click_1(object sender, EventArgs e)
         {
-            bool connected;
-            CheckDatabaseConnection check = new CheckDatabaseConnection();
-            connected = check.checkDatabase();
-            if (connected==true)
+            try
             {
-                if (!string.IsNullOrWhiteSpace((textBox1.Text)))
-                {
-                    using (SqlConnection conn = new SqlConnection(Database.connectionStr))
+                
+                //if (connected == "true")
+                //{
+                    if (!string.IsNullOrWhiteSpace((txtEmail.Text)))
                     {
-                        DataTable table = new DataTable();
-                        SqlDataAdapter adapter = new SqlDataAdapter(@"select * from staffUser where email = '" + textBox1.Text + "' and password = '" + textBox2.Text + "'", conn);
-                        adapter.Fill(table);
-                        if (table.Rows.Count > 0)
+                        using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
                         {
-                            if (table.Rows[0]["role"].ToString().Equals("1", StringComparison.CurrentCultureIgnoreCase))
+                            DataTable table = new DataTable();
+                            SqlDataAdapter adapter = new SqlDataAdapter(@"select * from Staff where email = '" + txtEmail.Text + "' and password = '" + textBox2.Text + "'", conn);
+                            adapter.Fill(table);
+                            if (table.Rows.Count > 0)
                             {
-                                Globals.Staff = new Staff
+                                if (table.Rows[0]["role"].ToString().Equals("admin", StringComparison.CurrentCultureIgnoreCase))
                                 {
-                                    Name = table.Rows[0]["name"].ToString(),
-                                    Email = table.Rows[0]["email"].ToString(),
-                                    Gender = table.Rows[0]["gender"].ToString(),
-                                    Password = table.Rows[0]["password"].ToString(),
-                                    Role = table.Rows[0]["role"].ToString(),
-                                    Surname = table.Rows[0]["surname"].ToString()
-                                };
-                                frmHome home = new frmHome();
-                                home.Show();
-                            }
-                            else if (table.Rows[0]["role"].ToString().Equals("2", StringComparison.CurrentCultureIgnoreCase))
-                            {
-                                Globals.Staff = new Staff
+                                    Globals.Staff = new Staff
+                                    {
+                                        Name = table.Rows[0]["name"].ToString(),
+                                        Email = table.Rows[0]["email"].ToString(),
+                                        Gender = table.Rows[0]["gender"].ToString(),
+                                        Password = table.Rows[0]["password"].ToString(),
+                                        Role = table.Rows[0]["role"].ToString(),
+                                        Surname = table.Rows[0]["surname"].ToString()
+                                    };
+                                    frmHome home = new frmHome();
+                                    home.Show();
+                                }
+                                else if (table.Rows[0]["role"].ToString().Equals("2", StringComparison.CurrentCultureIgnoreCase))
                                 {
-                                    Name = table.Rows[0]["name"].ToString(),
-                                    Email = table.Rows[0]["email"].ToString(),
-                                    Gender = table.Rows[0]["gender"].ToString(),
-                                    Password = table.Rows[0]["password"].ToString(),
-                                    Role = table.Rows[0]["role"].ToString(),
-                                    Surname = table.Rows[0]["surname"].ToString()
-                                };
+                                    Globals.Staff = new Staff
+                                    {
+                                        Name = table.Rows[0]["name"].ToString(),
+                                        Email = table.Rows[0]["email"].ToString(),
+                                        Gender = table.Rows[0]["gender"].ToString(),
+                                        Password = table.Rows[0]["password"].ToString(),
+                                        Role = table.Rows[0]["role"].ToString(),
+                                        Surname = table.Rows[0]["surname"].ToString()
+                                    };
 
-                                frmLogin1 home = new frmLogin1();
-                                home.Show();
+                                    frmLogin1 home = new frmLogin1();
+                                    home.Show();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("You are not an admin");
+                                }
+                                
                             }
                             else
                             {
-                                MessageBox.Show("You are not an admin");
+                                MessageBox.Show("Please provide the correct username and passowrd");
                             }
-
-
-
-                        }
-                        else
-                        {
-                            MessageBox.Show("Please provide the correct username and passowrd");
-
                         }
                     }
-                }
-                else
-                {
+                    else
+                    {
 
-                    MessageBox.Show("please provide a username and password");
+                        MessageBox.Show("Please provide a username and password");
 
-                }
+                    }
 
+                //}
+                //else
+                //{
+                //    throw new Exception("Connection to the database was not established.\r\n" +
+                //                    "Please make sure that your database is on and that you are connected to the internet!");
+                //}
             }
-            else
+            catch(Exception ex)
             {
-                MessageBox.Show("You do not have internet connection.Please connect to the Internet to continue");
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new LogWriter(ex);
+                this.Close();
             }
                
         }
 
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                string connected;
+                CheckDatabaseConnection check = new CheckDatabaseConnection();
+                connected = check.checkDatabase();
+                if(connected=="True")
+                {
+                    using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
+                    {
+                        SqlCommand cmd = new SqlCommand("Select Email FROM Staff", conn);
+                        conn.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        AutoCompleteStringCollection MyCollection = new AutoCompleteStringCollection();
+                        while (reader.Read())
+                        {
+                            MyCollection.Add(reader.GetString(0));
+                        }
+                        txtEmail.AutoCompleteCustomSource = MyCollection;
+                        conn.Close();
+                    }
+                }
+                else
+                {
+                    throw new Exception("Connection to the database was not established.\r\n" +
+                                   "Please make sure that your database is on and that you are connected to the internet!");
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new LogWriter(ex);
+                this.Close();
+            }
+            
+        }
+        
     }
 }

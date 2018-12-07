@@ -50,7 +50,7 @@ namespace NetLog
             string refNum = closeComboRefNo.Text;
             if (refNum.ToString().Length > 2)
             {
-                using (SqlConnection conn = new SqlConnection(Database.connectionStr))
+                using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
                 {
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand("SELECT * from calls where referenceNumber='" + refNum + "'", conn))
@@ -84,12 +84,12 @@ namespace NetLog
             LoadCalls();
             DataTable table = new DataTable();
             string technician = Globals.Staff.Email;
-            using (SqlConnection conn = new SqlConnection(Database.connectionStr))
+            using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
             {
                 conn.Open();
                 using (conn)
                 {
-                    SqlDataAdapter reader = new SqlDataAdapter("SELECT * from calls where staffEmail='"+ technician+ "'", conn);
+                    SqlDataAdapter reader = new SqlDataAdapter("SELECT * from Tickets where staffEmail='"+ technician+ "'", conn);
                     DataSet ds = new DataSet();
                     reader.Fill(ds);
                     dataGridView1.VirtualMode = false;
@@ -127,12 +127,12 @@ namespace NetLog
         private void LoadCalls()
         {
             //locComboUnikNo.Items.Clear();
-            using (SqlConnection conn = new SqlConnection(Database.connectionStr))
+            using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
             {
                 conn.Open();
 
                 string technician = Globals.Staff.Email;
-                using (SqlCommand cmd = new SqlCommand("SELECT * from calls WHERE staffEmail='" + technician + "'", conn))
+                using (SqlCommand cmd = new SqlCommand("SELECT * from Tickets WHERE staffEmail='" + technician + "'", conn))
                 {
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
@@ -207,7 +207,7 @@ namespace NetLog
             DataTable table = new DataTable();
 
             string technician = Globals.Staff.Email;
-            using (SqlConnection conn = new SqlConnection(Database.connectionStr))
+            using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
             {
                 conn.Open();
                 if ((filter1 == "Incident")|| (filter1 == "Request"))
@@ -340,7 +340,7 @@ namespace NetLog
             string statusDescription = closeTxtMessage.Text;
             string refNum = closeComboRefNo.Text;
 
-            using (SqlConnection conn = new SqlConnection(Database.connectionStr))
+            using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand("update calls set status= @callStatus ,description=@statusDescription, dateResolved= @dateResolved where referenceNumber = '" + refNum + "'", conn))
