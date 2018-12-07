@@ -87,50 +87,6 @@
             this.label18 = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label17 = new System.Windows.Forms.Label();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.panelUpdate = new System.Windows.Forms.Panel();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.UpdatecomboUnikNo = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.updateBtnSearch = new System.Windows.Forms.Button();
-            this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox13 = new System.Windows.Forms.GroupBox();
-            this.panel15 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.updateTxtSurname = new System.Windows.Forms.TextBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label47 = new System.Windows.Forms.Label();
-            this.updateRadFemale = new System.Windows.Forms.RadioButton();
-            this.updateTxtContactNo = new System.Windows.Forms.TextBox();
-            this.updateTxtEmail = new System.Windows.Forms.TextBox();
-            this.label49 = new System.Windows.Forms.Label();
-            this.updateRadMale = new System.Windows.Forms.RadioButton();
-            this.updateTxtName = new System.Windows.Forms.TextBox();
-            this.label50 = new System.Windows.Forms.Label();
-            this.updateBtnExit = new System.Windows.Forms.Button();
-            this.updateBtnClear = new System.Windows.Forms.Button();
-            this.updateBtnSave = new System.Windows.Forms.Button();
-            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
-            this.label19 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.updateTxtDeviceName = new System.Windows.Forms.TextBox();
-            this.updateTxtModel = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.updateTxtSerialNumber = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.updateTxtMake = new System.Windows.Forms.TextBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.updateTxtFloorNo = new System.Windows.Forms.TextBox();
-            this.updateTxtAddress = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.updateTxtBuilding = new System.Windows.Forms.TextBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.closeBtnExit = new System.Windows.Forms.Button();
@@ -189,18 +145,6 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.panel6.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.panelUpdate.SuspendLayout();
-            this.panel14.SuspendLayout();
-            this.tableLayoutPanel13.SuspendLayout();
-            this.groupBox13.SuspendLayout();
-            this.panel15.SuspendLayout();
-            this.tableLayoutPanel10.SuspendLayout();
-            this.tableLayoutPanel11.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            this.panel12.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.panel13.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel18.SuspendLayout();
@@ -216,7 +160,6 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -940,516 +883,6 @@
             this.label17.Text = "Locate Incident/Request";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // tabPage4
-            // 
-            this.tabPage4.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.tabPage4.Controls.Add(this.panelUpdate);
-            this.tabPage4.Location = new System.Drawing.Point(4, 33);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage4.Size = new System.Drawing.Size(1309, 753);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Update Client";
-            // 
-            // panelUpdate
-            // 
-            this.panelUpdate.Controls.Add(this.panel14);
-            this.panelUpdate.Controls.Add(this.tableLayoutPanel13);
-            this.panelUpdate.Controls.Add(this.updateBtnExit);
-            this.panelUpdate.Controls.Add(this.updateBtnClear);
-            this.panelUpdate.Controls.Add(this.updateBtnSave);
-            this.panelUpdate.Controls.Add(this.tableLayoutPanel10);
-            this.panelUpdate.Controls.Add(this.tableLayoutPanel11);
-            this.panelUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelUpdate.Location = new System.Drawing.Point(4, 4);
-            this.panelUpdate.Margin = new System.Windows.Forms.Padding(4);
-            this.panelUpdate.Name = "panelUpdate";
-            this.panelUpdate.Size = new System.Drawing.Size(1301, 745);
-            this.panelUpdate.TabIndex = 1;
-            // 
-            // panel14
-            // 
-            this.panel14.Controls.Add(this.UpdatecomboUnikNo);
-            this.panel14.Controls.Add(this.label2);
-            this.panel14.Controls.Add(this.updateBtnSearch);
-            this.panel14.Location = new System.Drawing.Point(1, 41);
-            this.panel14.Margin = new System.Windows.Forms.Padding(4);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(661, 50);
-            this.panel14.TabIndex = 10;
-            // 
-            // UpdatecomboUnikNo
-            // 
-            this.UpdatecomboUnikNo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.UpdatecomboUnikNo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.UpdatecomboUnikNo.FormattingEnabled = true;
-            this.UpdatecomboUnikNo.Location = new System.Drawing.Point(273, 11);
-            this.UpdatecomboUnikNo.Margin = new System.Windows.Forms.Padding(4);
-            this.UpdatecomboUnikNo.Name = "UpdatecomboUnikNo";
-            this.UpdatecomboUnikNo.Size = new System.Drawing.Size(213, 32);
-            this.UpdatecomboUnikNo.TabIndex = 10;
-            // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(17, 10);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(223, 33);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Unique Number:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // updateBtnSearch
-            // 
-            this.updateBtnSearch.Dock = System.Windows.Forms.DockStyle.Right;
-            this.updateBtnSearch.Location = new System.Drawing.Point(498, 0);
-            this.updateBtnSearch.Margin = new System.Windows.Forms.Padding(4, 7, 4, 7);
-            this.updateBtnSearch.Name = "updateBtnSearch";
-            this.updateBtnSearch.Size = new System.Drawing.Size(163, 50);
-            this.updateBtnSearch.TabIndex = 8;
-            this.updateBtnSearch.Text = "Search";
-            this.updateBtnSearch.UseVisualStyleBackColor = true;
-            this.updateBtnSearch.Click += new System.EventHandler(this.updateBtnSearch_Click);
-            // 
-            // tableLayoutPanel13
-            // 
-            this.tableLayoutPanel13.ColumnCount = 1;
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel13.Controls.Add(this.groupBox13, 0, 0);
-            this.tableLayoutPanel13.Location = new System.Drawing.Point(1, 95);
-            this.tableLayoutPanel13.Margin = new System.Windows.Forms.Padding(4);
-            this.tableLayoutPanel13.Name = "tableLayoutPanel13";
-            this.tableLayoutPanel13.RowCount = 1;
-            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel13.Size = new System.Drawing.Size(649, 300);
-            this.tableLayoutPanel13.TabIndex = 9;
-            // 
-            // groupBox13
-            // 
-            this.groupBox13.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox13.Controls.Add(this.panel15);
-            this.groupBox13.Location = new System.Drawing.Point(4, 4);
-            this.groupBox13.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox13.Size = new System.Drawing.Size(641, 292);
-            this.groupBox13.TabIndex = 1;
-            this.groupBox13.TabStop = false;
-            this.groupBox13.Text = "Personal Information";
-            // 
-            // panel15
-            // 
-            this.panel15.Controls.Add(this.label9);
-            this.panel15.Controls.Add(this.updateTxtSurname);
-            this.panel15.Controls.Add(this.label30);
-            this.panel15.Controls.Add(this.label47);
-            this.panel15.Controls.Add(this.updateRadFemale);
-            this.panel15.Controls.Add(this.updateTxtContactNo);
-            this.panel15.Controls.Add(this.updateTxtEmail);
-            this.panel15.Controls.Add(this.label49);
-            this.panel15.Controls.Add(this.updateRadMale);
-            this.panel15.Controls.Add(this.updateTxtName);
-            this.panel15.Controls.Add(this.label50);
-            this.panel15.Location = new System.Drawing.Point(4, 28);
-            this.panel15.Margin = new System.Windows.Forms.Padding(4);
-            this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(633, 281);
-            this.panel15.TabIndex = 0;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Location = new System.Drawing.Point(40, 73);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(85, 24);
-            this.label9.TabIndex = 6;
-            this.label9.Text = "Surame:";
-            // 
-            // updateTxtSurname
-            // 
-            this.updateTxtSurname.Location = new System.Drawing.Point(269, 70);
-            this.updateTxtSurname.Margin = new System.Windows.Forms.Padding(4);
-            this.updateTxtSurname.Name = "updateTxtSurname";
-            this.updateTxtSurname.Size = new System.Drawing.Size(324, 32);
-            this.updateTxtSurname.TabIndex = 5;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.BackColor = System.Drawing.Color.Transparent;
-            this.label30.Location = new System.Drawing.Point(40, 161);
-            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(142, 24);
-            this.label30.TabIndex = 1;
-            this.label30.Text = "Email Address:";
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.BackColor = System.Drawing.Color.Transparent;
-            this.label47.Location = new System.Drawing.Point(40, 217);
-            this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(161, 24);
-            this.label47.TabIndex = 1;
-            this.label47.Text = "Contact Number:";
-            // 
-            // updateRadFemale
-            // 
-            this.updateRadFemale.AutoSize = true;
-            this.updateRadFemale.BackColor = System.Drawing.Color.Transparent;
-            this.updateRadFemale.Location = new System.Drawing.Point(492, 117);
-            this.updateRadFemale.Margin = new System.Windows.Forms.Padding(4);
-            this.updateRadFemale.Name = "updateRadFemale";
-            this.updateRadFemale.Size = new System.Drawing.Size(96, 28);
-            this.updateRadFemale.TabIndex = 4;
-            this.updateRadFemale.Text = "Female";
-            this.updateRadFemale.UseVisualStyleBackColor = false;
-            // 
-            // updateTxtContactNo
-            // 
-            this.updateTxtContactNo.Location = new System.Drawing.Point(269, 217);
-            this.updateTxtContactNo.Margin = new System.Windows.Forms.Padding(4);
-            this.updateTxtContactNo.Name = "updateTxtContactNo";
-            this.updateTxtContactNo.Size = new System.Drawing.Size(324, 32);
-            this.updateTxtContactNo.TabIndex = 0;
-            // 
-            // updateTxtEmail
-            // 
-            this.updateTxtEmail.Location = new System.Drawing.Point(269, 161);
-            this.updateTxtEmail.Margin = new System.Windows.Forms.Padding(13, 25, 13, 25);
-            this.updateTxtEmail.Name = "updateTxtEmail";
-            this.updateTxtEmail.Size = new System.Drawing.Size(324, 32);
-            this.updateTxtEmail.TabIndex = 0;
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.BackColor = System.Drawing.Color.Transparent;
-            this.label49.Location = new System.Drawing.Point(40, 22);
-            this.label49.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(69, 24);
-            this.label49.TabIndex = 1;
-            this.label49.Text = "Name:";
-            // 
-            // updateRadMale
-            // 
-            this.updateRadMale.AutoSize = true;
-            this.updateRadMale.BackColor = System.Drawing.Color.Transparent;
-            this.updateRadMale.Location = new System.Drawing.Point(269, 117);
-            this.updateRadMale.Margin = new System.Windows.Forms.Padding(4);
-            this.updateRadMale.Name = "updateRadMale";
-            this.updateRadMale.Size = new System.Drawing.Size(73, 28);
-            this.updateRadMale.TabIndex = 3;
-            this.updateRadMale.Text = "Male";
-            this.updateRadMale.UseVisualStyleBackColor = false;
-            // 
-            // updateTxtName
-            // 
-            this.updateTxtName.Location = new System.Drawing.Point(269, 20);
-            this.updateTxtName.Margin = new System.Windows.Forms.Padding(4);
-            this.updateTxtName.Name = "updateTxtName";
-            this.updateTxtName.Size = new System.Drawing.Size(324, 32);
-            this.updateTxtName.TabIndex = 0;
-            // 
-            // label50
-            // 
-            this.label50.AutoSize = true;
-            this.label50.BackColor = System.Drawing.Color.Transparent;
-            this.label50.Location = new System.Drawing.Point(40, 119);
-            this.label50.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(81, 24);
-            this.label50.TabIndex = 1;
-            this.label50.Text = "Gender:";
-            // 
-            // updateBtnExit
-            // 
-            this.updateBtnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.updateBtnExit.BackColor = System.Drawing.Color.Firebrick;
-            this.updateBtnExit.Location = new System.Drawing.Point(1139, 695);
-            this.updateBtnExit.Margin = new System.Windows.Forms.Padding(4);
-            this.updateBtnExit.Name = "updateBtnExit";
-            this.updateBtnExit.Size = new System.Drawing.Size(156, 42);
-            this.updateBtnExit.TabIndex = 6;
-            this.updateBtnExit.Text = "Exit";
-            this.updateBtnExit.UseVisualStyleBackColor = false;
-            this.updateBtnExit.Click += new System.EventHandler(this.btnExitUpdate_Click);
-            // 
-            // updateBtnClear
-            // 
-            this.updateBtnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.updateBtnClear.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.updateBtnClear.Location = new System.Drawing.Point(973, 696);
-            this.updateBtnClear.Margin = new System.Windows.Forms.Padding(4);
-            this.updateBtnClear.Name = "updateBtnClear";
-            this.updateBtnClear.Size = new System.Drawing.Size(156, 42);
-            this.updateBtnClear.TabIndex = 7;
-            this.updateBtnClear.Text = "Clear";
-            this.updateBtnClear.UseVisualStyleBackColor = false;
-            this.updateBtnClear.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // updateBtnSave
-            // 
-            this.updateBtnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.updateBtnSave.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.updateBtnSave.Location = new System.Drawing.Point(809, 696);
-            this.updateBtnSave.Margin = new System.Windows.Forms.Padding(4);
-            this.updateBtnSave.Name = "updateBtnSave";
-            this.updateBtnSave.Size = new System.Drawing.Size(156, 42);
-            this.updateBtnSave.TabIndex = 8;
-            this.updateBtnSave.Text = "Save";
-            this.updateBtnSave.UseVisualStyleBackColor = false;
-            this.updateBtnSave.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // tableLayoutPanel10
-            // 
-            this.tableLayoutPanel10.ColumnCount = 3;
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel10.Controls.Add(this.label19, 1, 0);
-            this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(4);
-            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
-            this.tableLayoutPanel10.RowCount = 1;
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(1301, 41);
-            this.tableLayoutPanel10.TabIndex = 5;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label19.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.White;
-            this.label19.Location = new System.Drawing.Point(437, 0);
-            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(425, 41);
-            this.label19.TabIndex = 3;
-            this.label19.Text = "Update Client Info";
-            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tableLayoutPanel11
-            // 
-            this.tableLayoutPanel11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel11.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.tableLayoutPanel11.ColumnCount = 1;
-            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel11.Controls.Add(this.groupBox6, 0, 1);
-            this.tableLayoutPanel11.Controls.Add(this.groupBox3, 0, 0);
-            this.tableLayoutPanel11.Location = new System.Drawing.Point(655, 95);
-            this.tableLayoutPanel11.Margin = new System.Windows.Forms.Padding(4);
-            this.tableLayoutPanel11.Name = "tableLayoutPanel11";
-            this.tableLayoutPanel11.RowCount = 2;
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 53.4413F));
-            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 46.5587F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(646, 593);
-            this.tableLayoutPanel11.TabIndex = 4;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox6.Controls.Add(this.panel12);
-            this.groupBox6.Location = new System.Drawing.Point(4, 320);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox6.Size = new System.Drawing.Size(636, 268);
-            this.groupBox6.TabIndex = 3;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Device Information:";
-            // 
-            // panel12
-            // 
-            this.panel12.Controls.Add(this.updateTxtDeviceName);
-            this.panel12.Controls.Add(this.updateTxtModel);
-            this.panel12.Controls.Add(this.label21);
-            this.panel12.Controls.Add(this.label22);
-            this.panel12.Controls.Add(this.label23);
-            this.panel12.Controls.Add(this.updateTxtSerialNumber);
-            this.panel12.Controls.Add(this.label24);
-            this.panel12.Controls.Add(this.updateTxtMake);
-            this.panel12.Location = new System.Drawing.Point(4, 23);
-            this.panel12.Margin = new System.Windows.Forms.Padding(4);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(628, 245);
-            this.panel12.TabIndex = 2;
-            // 
-            // updateTxtDeviceName
-            // 
-            this.updateTxtDeviceName.Location = new System.Drawing.Point(269, 4);
-            this.updateTxtDeviceName.Margin = new System.Windows.Forms.Padding(4);
-            this.updateTxtDeviceName.Name = "updateTxtDeviceName";
-            this.updateTxtDeviceName.Size = new System.Drawing.Size(324, 32);
-            this.updateTxtDeviceName.TabIndex = 8;
-            // 
-            // updateTxtModel
-            // 
-            this.updateTxtModel.Location = new System.Drawing.Point(269, 103);
-            this.updateTxtModel.Margin = new System.Windows.Forms.Padding(4);
-            this.updateTxtModel.Name = "updateTxtModel";
-            this.updateTxtModel.Size = new System.Drawing.Size(324, 32);
-            this.updateTxtModel.TabIndex = 6;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.BackColor = System.Drawing.Color.Transparent;
-            this.label21.Location = new System.Drawing.Point(40, 107);
-            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(70, 24);
-            this.label21.TabIndex = 1;
-            this.label21.Text = "Model:";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.BackColor = System.Drawing.Color.Transparent;
-            this.label22.Location = new System.Drawing.Point(40, 14);
-            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(69, 24);
-            this.label22.TabIndex = 1;
-            this.label22.Text = "Name:";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.BackColor = System.Drawing.Color.Transparent;
-            this.label23.Location = new System.Drawing.Point(40, 154);
-            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(143, 24);
-            this.label23.TabIndex = 1;
-            this.label23.Text = "Serial Number:";
-            // 
-            // updateTxtSerialNumber
-            // 
-            this.updateTxtSerialNumber.Location = new System.Drawing.Point(269, 150);
-            this.updateTxtSerialNumber.Margin = new System.Windows.Forms.Padding(4);
-            this.updateTxtSerialNumber.Name = "updateTxtSerialNumber";
-            this.updateTxtSerialNumber.Size = new System.Drawing.Size(324, 32);
-            this.updateTxtSerialNumber.TabIndex = 0;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.BackColor = System.Drawing.Color.Transparent;
-            this.label24.Location = new System.Drawing.Point(40, 60);
-            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(54, 24);
-            this.label24.TabIndex = 1;
-            this.label24.Text = "Type";
-            // 
-            // updateTxtMake
-            // 
-            this.updateTxtMake.Location = new System.Drawing.Point(269, 57);
-            this.updateTxtMake.Margin = new System.Windows.Forms.Padding(4);
-            this.updateTxtMake.Name = "updateTxtMake";
-            this.updateTxtMake.Size = new System.Drawing.Size(324, 32);
-            this.updateTxtMake.TabIndex = 0;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.panel13);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(4, 4);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Size = new System.Drawing.Size(638, 308);
-            this.groupBox3.TabIndex = 4;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Site Information:";
-            // 
-            // panel13
-            // 
-            this.panel13.Controls.Add(this.updateTxtFloorNo);
-            this.panel13.Controls.Add(this.updateTxtAddress);
-            this.panel13.Controls.Add(this.label25);
-            this.panel13.Controls.Add(this.label26);
-            this.panel13.Controls.Add(this.label28);
-            this.panel13.Controls.Add(this.updateTxtBuilding);
-            this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel13.Location = new System.Drawing.Point(4, 29);
-            this.panel13.Margin = new System.Windows.Forms.Padding(4);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(630, 275);
-            this.panel13.TabIndex = 2;
-            // 
-            // updateTxtFloorNo
-            // 
-            this.updateTxtFloorNo.Location = new System.Drawing.Point(269, 206);
-            this.updateTxtFloorNo.Margin = new System.Windows.Forms.Padding(4);
-            this.updateTxtFloorNo.Name = "updateTxtFloorNo";
-            this.updateTxtFloorNo.Size = new System.Drawing.Size(324, 32);
-            this.updateTxtFloorNo.TabIndex = 7;
-            // 
-            // updateTxtAddress
-            // 
-            this.updateTxtAddress.Location = new System.Drawing.Point(269, 18);
-            this.updateTxtAddress.Margin = new System.Windows.Forms.Padding(4);
-            this.updateTxtAddress.Multiline = true;
-            this.updateTxtAddress.Name = "updateTxtAddress";
-            this.updateTxtAddress.Size = new System.Drawing.Size(324, 110);
-            this.updateTxtAddress.TabIndex = 6;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.BackColor = System.Drawing.Color.Transparent;
-            this.label25.Location = new System.Drawing.Point(40, 215);
-            this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(137, 24);
-            this.label25.TabIndex = 1;
-            this.label25.Text = "Floor Number:";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.BackColor = System.Drawing.Color.Transparent;
-            this.label26.Location = new System.Drawing.Point(40, 22);
-            this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(87, 24);
-            this.label26.TabIndex = 1;
-            this.label26.Text = "Address:";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.BackColor = System.Drawing.Color.Transparent;
-            this.label28.Location = new System.Drawing.Point(40, 158);
-            this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(88, 24);
-            this.label28.TabIndex = 1;
-            this.label28.Text = "Building:";
-            // 
-            // updateTxtBuilding
-            // 
-            this.updateTxtBuilding.Location = new System.Drawing.Point(269, 154);
-            this.updateTxtBuilding.Margin = new System.Windows.Forms.Padding(4);
-            this.updateTxtBuilding.Name = "updateTxtBuilding";
-            this.updateTxtBuilding.Size = new System.Drawing.Size(324, 32);
-            this.updateTxtBuilding.TabIndex = 0;
-            // 
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.SystemColors.ActiveBorder;
@@ -1903,22 +1336,6 @@
             this.panel6.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.panelUpdate.ResumeLayout(false);
-            this.panel14.ResumeLayout(false);
-            this.tableLayoutPanel13.ResumeLayout(false);
-            this.groupBox13.ResumeLayout(false);
-            this.panel15.ResumeLayout(false);
-            this.panel15.PerformLayout();
-            this.tableLayoutPanel10.ResumeLayout(false);
-            this.tableLayoutPanel10.PerformLayout();
-            this.tableLayoutPanel11.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.panel12.ResumeLayout(false);
-            this.panel12.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.panel13.ResumeLayout(false);
-            this.panel13.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel18.ResumeLayout(false);
@@ -1944,7 +1361,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem alwaysOnTopToolStripMenuItem;
@@ -1971,22 +1387,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Panel panelUpdate;
-        private System.Windows.Forms.Button updateBtnExit;
-        private System.Windows.Forms.Button updateBtnClear;
-        private System.Windows.Forms.Button updateBtnSave;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.TextBox updateTxtModel;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox updateTxtSerialNumber;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.TextBox updateTxtMake;
         private System.Windows.Forms.RadioButton closeRadEscalate;
         private System.Windows.Forms.RadioButton closeRadClose;
         private System.Windows.Forms.TextBox closeTxtAssignedTo;
@@ -2013,12 +1413,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.Button closeBtnExit;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox updateTxtBuilding;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label37;
@@ -2037,18 +1431,6 @@
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.GroupBox groupBox11;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
-        private System.Windows.Forms.Label label50;
-        private System.Windows.Forms.TextBox updateTxtName;
-        private System.Windows.Forms.RadioButton updateRadMale;
-        private System.Windows.Forms.Label label49;
-        private System.Windows.Forms.TextBox updateTxtEmail;
-        private System.Windows.Forms.TextBox updateTxtContactNo;
-        private System.Windows.Forms.RadioButton updateRadFemale;
-        private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.GroupBox groupBox13;
         private System.Windows.Forms.TextBox recTxtEmail;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Panel panel3;
@@ -2066,18 +1448,9 @@
         private System.Windows.Forms.TextBox recTxtFloorNo;
         private System.Windows.Forms.TextBox recTxtAddress;
         private System.Windows.Forms.Button RecBtnSave;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox updateTxtSurname;
-        private System.Windows.Forms.TextBox updateTxtFloorNo;
-        private System.Windows.Forms.TextBox updateTxtAddress;
-        private System.Windows.Forms.TextBox updateTxtDeviceName;
         private System.Windows.Forms.ComboBox recComboUnikNo;
         private System.Windows.Forms.ComboBox locComboUnikNo;
         private System.Windows.Forms.ComboBox closeComboUnikNo;
-        private System.Windows.Forms.Panel panel14;
-        private System.Windows.Forms.ComboBox UpdatecomboUnikNo;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button updateBtnSearch;
         private System.Windows.Forms.Button locBtnShowAll;
     }
 }

@@ -15,7 +15,7 @@ namespace NetLog
         { using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) from calls", conn);
+                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) from Tickets", conn);
                 object count = cmd.ExecuteScalar();
                 referenceNum =(1000 + (Convert.ToInt32(count) + 1)).ToString();
             }

@@ -190,23 +190,23 @@ namespace NetLog
             recComboPriority.Text = "Choose";
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            updateTxtName.Clear();
-            updateTxtSurname.Clear();
-            updateTxtEmail.Clear();
-            updateTxtContactNo.Clear();
-            updateTxtAddress.Clear();
-            updateTxtBuilding.Clear();
-            updateTxtFloorNo.Clear();
-            updateTxtSerialNumber.Clear();
-            updateTxtModel.Clear();
-            updateTxtDeviceName.Clear();
-            updateTxtMake.Clear();
-            UpdatecomboUnikNo.SelectedIndex = -1;
-            //txtNewCompany.Clear();
-            updateTxtDeviceName.Clear();
-        }
+        //private void button3_Click(object sender, EventArgs e)
+        //{
+        //    updateTxtName.Clear();
+        //    updateTxtSurname.Clear();
+        //    updateTxtEmail.Clear();
+        //    updateTxtContactNo.Clear();
+        //    updateTxtAddress.Clear();
+        //    updateTxtBuilding.Clear();
+        //    updateTxtFloorNo.Clear();
+        //    updateTxtSerialNumber.Clear();
+        //    updateTxtModel.Clear();
+        //    updateTxtDeviceName.Clear();
+        //    updateTxtMake.Clear();
+        //    UpdatecomboUnikNo.SelectedIndex = -1;
+        //    //txtNewCompany.Clear();
+        //    updateTxtDeviceName.Clear();
+        //}
 
        
         private void button9_Click(object sender, EventArgs e)
@@ -218,72 +218,80 @@ namespace NetLog
         {
             string refNum= recComboUnikNo.Text;
             int i;
-            if ((refNum.ToString().Length > 2 ))
+            try
             {
-                if (int.TryParse(refNum, out i))
+                if ((refNum.ToString().Length > 2))
                 {
-                    int id = Convert.ToInt32(refNum);
-                    using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
+                    if (int.TryParse(refNum, out i))
                     {
-                        conn.Open();
-                        try {
-                            using (SqlCommand cmd = new SqlCommand("SELECT * from staff where StaffNumber = '" + id + "'", conn))
-                            {
-                                SqlDataReader reader = cmd.ExecuteReader();
-                                reader.Read();
-                                recTxtName.Text = reader["Name"].ToString();
-                                recTxtSurname.Text = reader["Surname"].ToString();
-                                recTxtEmail.Text = reader["Email"].ToString();
-                                //recTxtContactNo.Text = reader["contactNumber"].ToString();
-                                //recTxtAddress.Text = reader["address"].ToString();
-                                //recTxtBuilding.Text = reader["building"].ToString();
-                                //recTxtFloorNo.Text = reader["floorNo"].ToString();
-
-                                reader.Close();
-                            }
-                        }
-                        catch (Exception ex)
+                        int id = Convert.ToInt32(refNum);
+                        using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
                         {
-                            MessageBox.Show("The number you entered does not exit in the database.Try again" + "r/n " + ex.Message);
+                            conn.Open();
+                            try
+                            {
+                                using (SqlCommand cmd = new SqlCommand("SELECT * from staff where StaffNumber = '" + id + "'", conn))
+                                {
+                                    SqlDataReader reader = cmd.ExecuteReader();
+                                    reader.Read();
+                                    recTxtName.Text = reader["Name"].ToString();
+                                    recTxtSurname.Text = reader["Surname"].ToString();
+                                    recTxtEmail.Text = reader["Email"].ToString();
+                                    //recTxtContactNo.Text = reader["contactNumber"].ToString();
+                                    //recTxtAddress.Text = reader["address"].ToString();
+                                    //recTxtBuilding.Text = reader["building"].ToString();
+                                    //recTxtFloorNo.Text = reader["floorNo"].ToString();
+
+                                    reader.Close();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                new LogWriter(ex);
+                                this.Close();
+                            }
+
                         }
-
                     }
+                    //else
+                    //{
+                    //    string clientName = refNum;
+                    //    string inputName = clientName.Substring(clientName.IndexOf(' ') + 1);
+                    //    using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
+                    //    {
+                    //        conn.Open();
+                    //        try {
+                    //            using (SqlCommand cmd = new SqlCommand("SELECT * from Staff where name = '" + inputName + "'", conn))
+                    //            {
+                    //                SqlDataReader reader = cmd.ExecuteReader();
+                    //                reader.Read();
+                    //                recTxtName.Text = reader["name"].ToString();
+                    //                recTxtSurname.Text = reader["surname"].ToString();
+                    //                recTxtEmail.Text = reader["email"].ToString();
+                    //                //recTxtContactNo.Text = reader["contactNumber"].ToString();
+                    //                //recTxtAddress.Text = reader["address"].ToString();
+                    //                //recTxtBuilding.Text = reader["building"].ToString();
+                    //                //recTxtFloorNo.Text = reader["floorNo"].ToString();
+
+                    //                reader.Close();
+
+                    //            }
+                    //        }
+                    //        catch (InvalidOperationException)
+                    //        {
+                    //            MessageBox.Show("The name you entered does not exit in the database.Please Try again");
+                    //        }
+
+                    //    }
+                    //}
                 }
-                //else
-                //{
-                //    string clientName = refNum;
-                //    string inputName = clientName.Substring(clientName.IndexOf(' ') + 1);
-                //    using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
-                //    {
-                //        conn.Open();
-                //        try {
-                //            using (SqlCommand cmd = new SqlCommand("SELECT * from Staff where name = '" + inputName + "'", conn))
-                //            {
-                //                SqlDataReader reader = cmd.ExecuteReader();
-                //                reader.Read();
-                //                recTxtName.Text = reader["name"].ToString();
-                //                recTxtSurname.Text = reader["surname"].ToString();
-                //                recTxtEmail.Text = reader["email"].ToString();
-                //                //recTxtContactNo.Text = reader["contactNumber"].ToString();
-                //                //recTxtAddress.Text = reader["address"].ToString();
-                //                //recTxtBuilding.Text = reader["building"].ToString();
-                //                //recTxtFloorNo.Text = reader["floorNo"].ToString();
-
-                //                reader.Close();
-
-                //            }
-                //        }
-                //        catch (InvalidOperationException)
-                //        {
-                //            MessageBox.Show("The name you entered does not exit in the database.Please Try again");
-                //        }
-
-                //    }
-                //}
             }
-            else
+            catch(Exception ex)
             {
-                MessageBox.Show("Please enter a valid reference number");
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new LogWriter(ex);
+                this.Close();
             }
             
         }
@@ -291,60 +299,67 @@ namespace NetLog
         private void btnContinue_Click(object sender, EventArgs e)
         {
             string refNum = locComboUnikNo.Text;
-            if (refNum.ToString().Length > 2)
+            try
             {
-                DataTable table = new DataTable();
-                try
+                if (refNum.ToString().Length > 2)
                 {
-                    using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
+                    DataTable table = new DataTable();
+                    try
                     {
-                        conn.Open();
-
-                        using (conn)
+                        using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
                         {
-                            SqlDataAdapter reader = new SqlDataAdapter("SELECT * from calls where referenceNumber = '" + refNum + "'", conn);
-                            DataSet ds = new DataSet();
-                            reader.Fill(ds);
-                            dataGridView1.VirtualMode = false;
-                            dataGridView1.Columns.Clear();
-                            dataGridView1.AutoGenerateColumns = true;
-                            dataGridView1.DataSource = ds.Tables[0];
-                            dataGridView1.Refresh();
+                            conn.Open();
 
-                            try
+                            using (conn)
                             {
+                                SqlDataAdapter reader = new SqlDataAdapter("SELECT * from Tickets where TicketNumber = '" + refNum + "'", conn);
+                                DataSet ds = new DataSet();
+                                reader.Fill(ds);
+                                dataGridView1.VirtualMode = false;
+                                dataGridView1.Columns.Clear();
+                                dataGridView1.AutoGenerateColumns = true;
+                                dataGridView1.DataSource = ds.Tables[0];
+                                dataGridView1.Refresh();
 
-                                for (int rows = 0; rows < dataGridView1.Rows.Count; rows++)
+                                try
                                 {
-                                    string status = dataGridView1.Rows[rows].Cells[6].Value.ToString();
-                                    if (status == "Closed")
+
+                                    for (int rows = 0; rows < dataGridView1.Rows.Count; rows++)
                                     {
-                                        dataGridView1.Rows[rows].DefaultCellStyle.BackColor = Color.Yellow;
-                                    }
-                                    else if (status == "Escalated")
-                                    {
-                                        dataGridView1.Rows[rows].DefaultCellStyle.BackColor = Color.Red;
-                                    }
-                                    else if (status == "Opened")
-                                    {
-                                        dataGridView1.Rows[rows].DefaultCellStyle.BackColor = Color.Green;
+                                        string status = dataGridView1.Rows[rows].Cells[6].Value.ToString();
+                                        if (status == "Closed")
+                                        {
+                                            dataGridView1.Rows[rows].DefaultCellStyle.BackColor = Color.Yellow;
+                                        }
+                                        else if (status == "Escalated")
+                                        {
+                                            dataGridView1.Rows[rows].DefaultCellStyle.BackColor = Color.Red;
+                                        }
+                                        else if (status == "Opened")
+                                        {
+                                            dataGridView1.Rows[rows].DefaultCellStyle.BackColor = Color.Green;
+                                        }
                                     }
                                 }
-                            }
-                            catch (Exception)
-                            {
+                                catch (Exception)
+                                {
+                                }
                             }
                         }
                     }
-                 }
-                catch (InvalidOperationException)
-                {
-                    MessageBox.Show("The number you entered does not exit in the database.Please Try again");
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        new LogWriter(ex);
+                        this.Close();
+                    }
                 }
             }
-            else
+            catch(Exception ex)
             {
-                MessageBox.Show("Please enter a valid reference number");
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new LogWriter(ex);
+                this.Close();
             }
         }
 
@@ -358,22 +373,24 @@ namespace NetLog
                     using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
                     {
                         conn.Open();
-                        using (SqlCommand cmd = new SqlCommand("SELECT * from calls where referenceNumber='" + refNum + "'", conn))
+                        using (SqlCommand cmd = new SqlCommand("SELECT * from Tickets where TicketNumber='" + refNum + "'", conn))
                         {
                             SqlDataReader reader = cmd.ExecuteReader();
                             reader.Read();
                             closeTxtType.Text = reader["type"].ToString();
                             closeTxtDescription.Text = reader["description"].ToString();
-                            closeTxtAssignedTo.Text = reader["staffEmail"].ToString();
-                            closeTxtAssignedBy.Text = reader["assignedBy"].ToString();
+                            //closeTxtAssignedTo.Text = reader["staffEmail"].ToString();
+                            closeTxtAssignedBy.Text = reader["CreatedBy"].ToString();
 
                             reader.Close();
                         }
                     }
                 }
-                catch (InvalidOperationException)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("The number you entered does not exit in the database.Please Try again");
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    new LogWriter(ex);
+                    this.Close();
                 }
             }
             else
@@ -382,57 +399,65 @@ namespace NetLog
             }
         }
 
-        private void button8_Click(object sender, EventArgs e)
-        {
-            bool message = valid.validation(updateTxtName.Text,updateTxtSurname.Text,updateTxtEmail.Text,updateTxtContactNo.Text,
-                                        updateTxtAddress.Text,updateTxtBuilding.Text,updateTxtFloorNo.Text,updateTxtDeviceName.Text,
-                                        updateTxtMake.Text, updateTxtModel.Text,updateTxtSerialNumber.Text);
-            string refNum = UpdatecomboUnikNo.Text;
-            
-            if (message == true)
-            {
-                string gender;
-                string clientName = refNum;
-                string inputName = clientName.Substring(clientName.IndexOf(' ') + 1);
-                //Sending updated info to database
-                if (updateRadFemale.Checked == true)
-                {
-                    gender = "F";
+        //private void button8_Click(object sender, EventArgs e)
+        //{
+        //    bool message = valid.validation(updateTxtName.Text,updateTxtSurname.Text,updateTxtEmail.Text,updateTxtContactNo.Text,
+        //                                updateTxtAddress.Text,updateTxtBuilding.Text,updateTxtFloorNo.Text,updateTxtDeviceName.Text,
+        //                                updateTxtMake.Text, updateTxtModel.Text,updateTxtSerialNumber.Text);
+        //    string refNum = UpdatecomboUnikNo.Text;
+        //    try
+        //    {
+        //        if (message == true)
+        //        {
+        //            string gender;
+        //            string clientName = refNum;
+        //            string inputName = clientName.Substring(clientName.IndexOf(' ') + 1);
+        //            //Sending updated info to database
+        //            if (updateRadFemale.Checked == true)
+        //            {
+        //                gender = "F";
 
-                }
-                else
-                {
-                    gender = "M";
-                }
-                
+        //            }
+        //            else
+        //            {
+        //                gender = "M";
+        //            }
 
-                using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
-                {
-                    conn.Open();
-                    using (SqlCommand cmd = new SqlCommand("UPDATE client SET name=@name,surname=@surname,gender=@gender,email=@email,contactNumber=@contactNumber,address=@address,building=@building,floorNo=@floorNo WHERE clientNumber = '" + refNum + "' or name ='"+inputName+"'", conn))
 
-                    {
-                       
-                        cmd.Parameters.AddWithValue("@name", updateTxtName.Text);
-                        cmd.Parameters.AddWithValue("@surname", updateTxtSurname.Text);
-                        cmd.Parameters.AddWithValue("@gender", gender);
-                        cmd.Parameters.AddWithValue("@email", updateTxtEmail.Text);
-                        cmd.Parameters.AddWithValue("@contactNumber", updateTxtContactNo.Text);
-                        cmd.Parameters.AddWithValue("@address", updateTxtAddress.Text);
-                        cmd.Parameters.AddWithValue("@building", updateTxtBuilding.Text);
-                        cmd.Parameters.AddWithValue("@floorNo", updateTxtFloorNo.Text);
-                        
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                //LoadClient();
-                MessageBox.Show("Information updated");
-            }
-            else
-            {
-                MessageBox.Show("Please fill in all the fields with the correct information");
-            }
-        }
+        //            using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
+        //            {
+        //                conn.Open();
+        //                using (SqlCommand cmd = new SqlCommand("UPDATE client SET name=@name,surname=@surname,gender=@gender,email=@email,contactNumber=@contactNumber,address=@address,building=@building,floorNo=@floorNo WHERE clientNumber = '" + refNum + "' or name ='" + inputName + "'", conn))
+
+        //                {
+
+        //                    cmd.Parameters.AddWithValue("@name", updateTxtName.Text);
+        //                    cmd.Parameters.AddWithValue("@surname", updateTxtSurname.Text);
+        //                    cmd.Parameters.AddWithValue("@gender", gender);
+        //                    cmd.Parameters.AddWithValue("@email", updateTxtEmail.Text);
+        //                    cmd.Parameters.AddWithValue("@contactNumber", updateTxtContactNo.Text);
+        //                    cmd.Parameters.AddWithValue("@address", updateTxtAddress.Text);
+        //                    cmd.Parameters.AddWithValue("@building", updateTxtBuilding.Text);
+        //                    cmd.Parameters.AddWithValue("@floorNo", updateTxtFloorNo.Text);
+
+        //                    cmd.ExecuteNonQuery();
+        //                }
+        //            }
+        //            //LoadClient();
+        //            MessageBox.Show("Information updated");
+        //        }
+        //        else
+        //        {
+        //            throw new Exception("Please fill in all the fields with the correct information");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        new LogWriter(ex);
+        //        this.Close();
+        //    }
+        //}
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -448,59 +473,68 @@ namespace NetLog
 
             GenerateReferenceNumber genRef = new GenerateReferenceNumber();
             refNum = genRef.GetUniqueKey();
-
-            if (recRadIncident.Checked == true)
+            try
             {
-                callType = "Incident";
-                refNum = "I" + genRef.GetUniqueKey();
-            }
-            else {
-                callType = "Request";
-                refNum = "R" + genRef.GetUniqueKey();
-            }
-            if ((recTxtCallDescription.Text == "") || (recComboUnikNo.Text == "") || (recComboAssignedTo.Text == "Choose") || (recComboPriority.Text == "Choose")
-                || (recComboAssignedTo.Text == "") || (recComboPriority.Text == ""))
-            {
-                MessageBox.Show("Please fill in all the fields with the correct information");
-            }
-            else
-            {
-                using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
+                if (recRadIncident.Checked == true)
                 {
-                    conn.Open();
-                    using (SqlCommand cmd = new SqlCommand("INSERT INTO calls(referenceNumber,type,staffEmail,assignedBy,priority,description,dateLogged,status,dateResolved) VALUES(@referenceNumber,@type,@staffEmail,@assignedBy,@priority,@description,@dateLogged,@status,@dateResolved) ", conn))
-                    {
-                        cmd.Parameters.AddWithValue("@referenceNumber", refNum);
-                        cmd.Parameters.AddWithValue("@type", callType);
-                        cmd.Parameters.AddWithValue("@staffEmail", callAssignedTo);
-                        cmd.Parameters.AddWithValue("@assignedBy", callAssignedBy);
-                        cmd.Parameters.AddWithValue("@priority", callPriority);
-                        cmd.Parameters.AddWithValue("@description", callDescription);
-                        cmd.Parameters.AddWithValue("@dateLogged", callDateLogged);
-                        cmd.Parameters.AddWithValue("@status", callStatus);
-                        cmd.Parameters.AddWithValue("@dateResolved", callDateResolved);
-                        
-                        cmd.ExecuteNonQuery();
-                    }
+                    callType = "Incident";
+                    refNum = "I" + genRef.GetUniqueKey();
                 }
-                //LoadCalls();
-                string techEmail = recComboAssignedTo.Text;
-                string clientEmail = recTxtEmail.Text;
-                string clientNames = recTxtSurname.Text + " " + recTxtName.Text;
-                string callDesc = recTxtCallDescription.Text;
+                else
+                {
+                    callType = "Request";
+                    refNum = "R" + genRef.GetUniqueKey();
+                }
+                if ((recTxtCallDescription.Text == "") || (recComboUnikNo.Text == "") || (recComboAssignedTo.Text == "Choose") || (recComboPriority.Text == "Choose")
+                    || (recComboAssignedTo.Text == "") || (recComboPriority.Text == ""))
+                {
+                    MessageBox.Show("Please fill in all the fields with the correct information");
+                }
+                else
+                {
+                    using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
+                    {
+                        conn.Open();
+                        using (SqlCommand cmd = new SqlCommand("INSERT INTO Tickets(TicketNumber,Type,CreatedBy,Priority,Description,CreatedDate,Status,ClosedDate) VALUES(@TicketNumber,@Type,@CreatedBy,@Priority,@Description,@CreatedDate,@Status,@ClosedDate) ", conn))
+                        {
+                            cmd.Parameters.AddWithValue("@TicketNumber", refNum);
+                            cmd.Parameters.AddWithValue("@Type", callType);
+                            //cmd.Parameters.AddWithValue("@staffEmail", callAssignedTo);
+                            cmd.Parameters.AddWithValue("@CreatedBy", callAssignedBy);
+                            cmd.Parameters.AddWithValue("@Priority", callPriority);
+                            cmd.Parameters.AddWithValue("@Description", callDescription);
+                            cmd.Parameters.AddWithValue("@CreatedDate", callDateLogged);
+                            cmd.Parameters.AddWithValue("@Status", callStatus);
+                            cmd.Parameters.AddWithValue("@ClosedDate", callDateResolved);
 
-                SendEmail sendE = new SendEmail();
-                string message = sendE.sendEmail(Globals.Staff.Email, techEmail, clientEmail, clientNames, callDesc,refNum);
-              
-                MessageBox.Show("Call succesfully recorded!");
-                
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    //LoadCalls();
+                    string techEmail = recComboAssignedTo.Text;
+                    string clientEmail = recTxtEmail.Text;
+                    string clientNames = recTxtSurname.Text + " " + recTxtName.Text;
+                    string callDesc = recTxtCallDescription.Text;
+
+                    SendEmail sendE = new SendEmail();
+                    string message = sendE.sendEmail(Globals.Staff.Email, techEmail, clientEmail, clientNames, callDesc, refNum);
+
+                    MessageBox.Show("Call succesfully recorded!");
+
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new LogWriter(ex);
+                //this.Close();
             }
         }
 
         private void logOutToolStripMenuItem2_Click(object sender, EventArgs e)
         {
             frmLogin LogIn = new frmLogin();
-            this.Close();
+            //this.Close();
         }
 
         //private void LoadOrganisation()
@@ -557,27 +591,27 @@ namespace NetLog
         //        }
         //    }
         //}
-        //private void LoadCalls()
-        //{
-        //    locComboUnikNo.Items.Clear();
-        //    closeComboUnikNo.Items.Clear();
-        //    using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
-        //    {
-        //        conn.Open();
-        //        using (SqlCommand cmd = new SqlCommand("SELECT * FROM Tickets", conn))
-        //        {
-        //            SqlDataReader reader = cmd.ExecuteReader();
-        //            while (reader.Read())
-        //            {
-        //                ComboboxItem refNo = new ComboboxItem();
-        //                refNo.Text = reader["referenceNumber"].ToString();
-        //                locComboUnikNo.Items.Add(refNo);
-        //                closeComboUnikNo.Items.Add(refNo);
-        //            }
-        //            reader.Close();
-        //        }
-        //    }
-        //}
+        private void LoadCalls()
+        {
+            locComboUnikNo.Items.Clear();
+            closeComboUnikNo.Items.Clear();
+            using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Tickets", conn))
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        ComboboxItem refNo = new ComboboxItem();
+                        refNo.Text = reader["TicketNumber"].ToString();
+                        locComboUnikNo.Items.Add(refNo);
+                        closeComboUnikNo.Items.Add(refNo);
+                    }
+                    reader.Close();
+                }
+            }
+        }
         private void LoadStaffUser()
         {
             using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
@@ -589,8 +623,11 @@ namespace NetLog
                     while (reader.Read())
                     {
                         ComboboxItem staffEmail = new ComboboxItem();
+                        ComboboxItem staffNumber = new ComboboxItem();
                         staffEmail.Text = reader["email"].ToString();
+                        staffNumber.Text= reader["StaffNumber"].ToString();
                         recComboAssignedTo.Items.Add(staffEmail);
+                        recComboUnikNo.Items.Add(staffNumber);
                     }
                     reader.Close();
                 }
@@ -600,7 +637,7 @@ namespace NetLog
         {
             //LoadOrganisation();
             //LoadClient();
-            //LoadCalls();
+            LoadCalls();
             LoadStaffUser();
             //regBtnClear.Enabled = false;
             //regBtnSave.Enabled = false;
@@ -733,11 +770,11 @@ namespace NetLog
                 using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand("update calls set status= @callStatus ,description=@statusDescription, dateResolved= @dateResolved where referenceNumber = '" + refNum + "'", conn))
+                    using (SqlCommand cmd = new SqlCommand("update Tickets set Status= @callStatus ,Description=@statusDescription, ClosedDate= @ClosedDate where TicketNumber = '" + refNum + "'", conn))
                     {
                         
                         cmd.Parameters.AddWithValue("@callStatus", callStatus);
-                        cmd.Parameters.AddWithValue("@dateResolved", callDateResolved);
+                        cmd.Parameters.AddWithValue("@ClosedDate", callDateResolved);
                         cmd.Parameters.AddWithValue("@statusDescription", statusDescription);
 
 
@@ -748,118 +785,118 @@ namespace NetLog
             }
         }
 
-        private void updateBtnSearch_Click(object sender, EventArgs e)
-        {
-            string refNum = UpdatecomboUnikNo.Text;
-            int i;
-            if ((refNum.ToString().Length > 2))
-            {
-                if (int.TryParse(refNum, out i))
-                {
-                    int id = Convert.ToInt32(refNum);
-                    using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
-                    {
-                        conn.Open();
-                        try {
-                            using (SqlCommand cmd = new SqlCommand("SELECT * from client where clientNumber = '" + id + "'", conn))
-                            {
-                                SqlDataReader reader = cmd.ExecuteReader();
-                                reader.Read();
-                                updateTxtName.Text = reader["name"].ToString();
-                                updateTxtSurname.Text = reader["surname"].ToString();
-                                updateTxtEmail.Text = reader["email"].ToString();
-                                updateTxtContactNo.Text = reader["contactNumber"].ToString();
-                                updateTxtAddress.Text = reader["address"].ToString();
-                                updateTxtBuilding.Text = reader["building"].ToString();
-                                updateTxtFloorNo.Text = reader["floorNo"].ToString();
-                                string gender= reader["gender"].ToString();
-                                if (gender == "M")
-                                {
-                                    updateRadMale.Checked = true;
-                                }
-                                else if(gender == "F")
-                                {
-                                    updateRadFemale.Checked = true;
-                                }
-                                reader.Close();
-                            }
-                            using (SqlCommand cmd2 = new SqlCommand("SELECT * from devices where deviceID ='" + id + "'", conn))
-                            {
-                                SqlDataReader reader2 = cmd2.ExecuteReader();
-                                reader2.Read();
-                                updateTxtDeviceName.Text = reader2["deviceName"].ToString();
-                                updateTxtMake.Text = reader2["type"].ToString();
-                                updateTxtModel.Text = reader2["model"].ToString();
-                                updateTxtSerialNumber.Text = reader2["serialNumber"].ToString();
+        //private void updateBtnSearch_Click(object sender, EventArgs e)
+        //{
+        //    string refNum = UpdatecomboUnikNo.Text;
+        //    int i;
+        //    if ((refNum.ToString().Length > 2))
+        //    {
+        //        if (int.TryParse(refNum, out i))
+        //        {
+        //            int id = Convert.ToInt32(refNum);
+        //            using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
+        //            {
+        //                conn.Open();
+        //                try {
+        //                    using (SqlCommand cmd = new SqlCommand("SELECT * from client where clientNumber = '" + id + "'", conn))
+        //                    {
+        //                        SqlDataReader reader = cmd.ExecuteReader();
+        //                        reader.Read();
+        //                        updateTxtName.Text = reader["name"].ToString();
+        //                        updateTxtSurname.Text = reader["surname"].ToString();
+        //                        updateTxtEmail.Text = reader["email"].ToString();
+        //                        updateTxtContactNo.Text = reader["contactNumber"].ToString();
+        //                        updateTxtAddress.Text = reader["address"].ToString();
+        //                        updateTxtBuilding.Text = reader["building"].ToString();
+        //                        updateTxtFloorNo.Text = reader["floorNo"].ToString();
+        //                        string gender= reader["gender"].ToString();
+        //                        if (gender == "M")
+        //                        {
+        //                            updateRadMale.Checked = true;
+        //                        }
+        //                        else if(gender == "F")
+        //                        {
+        //                            updateRadFemale.Checked = true;
+        //                        }
+        //                        reader.Close();
+        //                    }
+        //                    using (SqlCommand cmd2 = new SqlCommand("SELECT * from devices where deviceID ='" + id + "'", conn))
+        //                    {
+        //                        SqlDataReader reader2 = cmd2.ExecuteReader();
+        //                        reader2.Read();
+        //                        updateTxtDeviceName.Text = reader2["deviceName"].ToString();
+        //                        updateTxtMake.Text = reader2["type"].ToString();
+        //                        updateTxtModel.Text = reader2["model"].ToString();
+        //                        updateTxtSerialNumber.Text = reader2["serialNumber"].ToString();
 
-                                reader2.Close();
-                            }
-                        }
-                        catch (InvalidOperationException)
-                        {
-                            MessageBox.Show("The number you entered does not exit in the database.Please Try again");
-                        }
-                    }
-                }
-                else
-                {
-                    string clientName = refNum;
-                    string inputName = clientName.Substring(clientName.IndexOf(' ') + 1);
-                    string userID = "";
-                    using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
-                    {
-                        conn.Open();
-                        try {
-                            using (SqlCommand cmd = new SqlCommand("SELECT * from client where name = '" + inputName + "'", conn))
-                            {
-                                SqlDataReader reader = cmd.ExecuteReader();
-                                reader.Read();
-                                userID= reader["clientNumber"].ToString();
-                                updateTxtName.Text = reader["name"].ToString();
-                                updateTxtSurname.Text = reader["surname"].ToString();
-                                updateTxtEmail.Text = reader["email"].ToString();
-                                updateTxtContactNo.Text = reader["contactNumber"].ToString();
-                                updateTxtAddress.Text = reader["address"].ToString();
-                                updateTxtBuilding.Text = reader["building"].ToString();
-                                updateTxtFloorNo.Text = reader["floorNo"].ToString();
-                                string gender = reader["gender"].ToString();
-                                if (gender == "M")
-                                {
-                                    updateRadMale.Checked = true;
-                                }
-                                else if (gender == "F")
-                                {
-                                    updateRadFemale.Checked = true;
-                                }
+        //                        reader2.Close();
+        //                    }
+        //                }
+        //                catch (InvalidOperationException)
+        //                {
+        //                    MessageBox.Show("The number you entered does not exit in the database.Please Try again");
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            string clientName = refNum;
+        //            string inputName = clientName.Substring(clientName.IndexOf(' ') + 1);
+        //            string userID = "";
+        //            using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
+        //            {
+        //                conn.Open();
+        //                try {
+        //                    using (SqlCommand cmd = new SqlCommand("SELECT * from client where name = '" + inputName + "'", conn))
+        //                    {
+        //                        SqlDataReader reader = cmd.ExecuteReader();
+        //                        reader.Read();
+        //                        userID= reader["clientNumber"].ToString();
+        //                        updateTxtName.Text = reader["name"].ToString();
+        //                        updateTxtSurname.Text = reader["surname"].ToString();
+        //                        updateTxtEmail.Text = reader["email"].ToString();
+        //                        updateTxtContactNo.Text = reader["contactNumber"].ToString();
+        //                        updateTxtAddress.Text = reader["address"].ToString();
+        //                        updateTxtBuilding.Text = reader["building"].ToString();
+        //                        updateTxtFloorNo.Text = reader["floorNo"].ToString();
+        //                        string gender = reader["gender"].ToString();
+        //                        if (gender == "M")
+        //                        {
+        //                            updateRadMale.Checked = true;
+        //                        }
+        //                        else if (gender == "F")
+        //                        {
+        //                            updateRadFemale.Checked = true;
+        //                        }
 
-                                reader.Close();
+        //                        reader.Close();
 
-                            }
-                            using (SqlCommand cmd2 = new SqlCommand("SELECT * from devices where deviceID ='" + userID + "'", conn))
-                            {
-                                SqlDataReader reader2 = cmd2.ExecuteReader();
-                                reader2.Read();
-                                updateTxtDeviceName.Text = reader2["deviceName"].ToString();
-                                updateTxtMake.Text = reader2["type"].ToString();
-                                updateTxtModel.Text = reader2["model"].ToString();
-                                updateTxtSerialNumber.Text = reader2["serialNumber"].ToString();
+        //                    }
+        //                    using (SqlCommand cmd2 = new SqlCommand("SELECT * from devices where deviceID ='" + userID + "'", conn))
+        //                    {
+        //                        SqlDataReader reader2 = cmd2.ExecuteReader();
+        //                        reader2.Read();
+        //                        updateTxtDeviceName.Text = reader2["deviceName"].ToString();
+        //                        updateTxtMake.Text = reader2["type"].ToString();
+        //                        updateTxtModel.Text = reader2["model"].ToString();
+        //                        updateTxtSerialNumber.Text = reader2["serialNumber"].ToString();
 
-                                reader2.Close();
-                            }
+        //                        reader2.Close();
+        //                    }
 
-                        }
-                        catch (InvalidOperationException)
-                        {
-                            MessageBox.Show("The name you entered does not exit in the database.Please Try again");
-                        }
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please enter a valid name or unique number!", "Error");
-            }
-        }
+        //                }
+        //                catch (InvalidOperationException)
+        //                {
+        //                    MessageBox.Show("The name you entered does not exit in the database.Please Try again");
+        //                }
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Please enter a valid name or unique number!", "Error");
+        //    }
+        //}
 
         private void locBtnShowAll_Click(object sender, EventArgs e)
         {
@@ -869,7 +906,7 @@ namespace NetLog
                 conn.Open();
                 using (conn)
                 {
-                    SqlDataAdapter reader = new SqlDataAdapter("SELECT * from calls", conn);
+                    SqlDataAdapter reader = new SqlDataAdapter("SELECT * from Tickets", conn);
                     DataSet ds = new DataSet();
                     reader.Fill(ds);
                     dataGridView1.VirtualMode = false;
