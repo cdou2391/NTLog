@@ -226,7 +226,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1317, 790);
             this.tabControl1.TabIndex = 0;
-            this.tabControl1.Visible = false;
             // 
             // tabPage3
             // 
@@ -450,7 +449,7 @@
             this.groupBox11.Size = new System.Drawing.Size(661, 267);
             this.groupBox11.TabIndex = 5;
             this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "Client Information";
+            this.groupBox11.Text = "Staff Information";
             // 
             // panel11
             // 

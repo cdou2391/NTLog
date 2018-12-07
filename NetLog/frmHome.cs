@@ -54,125 +54,125 @@ namespace NetLog
         }
 
 
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            regTxtName.Clear();
-            regTxtSurname.Clear();
-            regTxtEmail.Clear();
-            regTxtPhoneNo.Clear();
-            regTxtAddress.Clear();
-            regTxtBuilding.Clear();
-            regTxtFloorNo.Clear();
-            regTxtSerialNo.Clear();
-            regTxtModel.Clear();
-            regTxtOrgEmail.Clear();
-            regTxtDeviveName.Clear();
-            regTxtModel.Clear();
-            comboOrganisation.SelectedIndex = -1;
-            txtNewCompany.Clear();
-            regTxtType.Clear();
-        }
+        //private void btnClear_Click(object sender, EventArgs e)
+        //{
+        //    regTxtName.Clear();
+        //    regTxtSurname.Clear();
+        //    regTxtEmail.Clear();
+        //    regTxtPhoneNo.Clear();
+        //    regTxtAddress.Clear();
+        //    regTxtBuilding.Clear();
+        //    regTxtFloorNo.Clear();
+        //    regTxtSerialNo.Clear();
+        //    regTxtModel.Clear();
+        //    regTxtOrgEmail.Clear();
+        //    regTxtDeviveName.Clear();
+        //    regTxtModel.Clear();
+        //    comboOrganisation.SelectedIndex = -1;
+        //    txtNewCompany.Clear();
+        //    regTxtType.Clear();
+        //}
        
 
         Validation valid = new Validation();
         
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            string name = regTxtName.Text;
-            string surname = regTxtSurname.Text;
-            string email = regTxtEmail.Text;
-            string number = regTxtPhoneNo.Text;
-            string address = regTxtAddress.Text;
-            string floorNo = regTxtFloorNo.Text;
-            string buildingName = regTxtBuilding.Text;
-            string compType = regTxtType.Text;
-            string make = regTxtDeviveName.Text;
-            string model = regTxtModel.Text;
-            string serialNum = regTxtSerialNo.Text;
-            string gender = "M";
-            string orgName;
-            string orgID;
+        //private void btnSave_Click(object sender, EventArgs e)
+        //{
+        //    //string name = regTxtName.Text;
+        //    //string surname = regTxtSurname.Text;
+        //    //string email = regTxtEmail.Text;
+        //    //string number = regTxtPhoneNo.Text;
+        //    //string address = regTxtAddress.Text;
+        //    //string floorNo = regTxtFloorNo.Text;
+        //    //string buildingName = regTxtBuilding.Text;
+        //    //string compType = regTxtType.Text;
+        //    //string make = regTxtDeviveName.Text;
+        //    //string model = regTxtModel.Text;
+        //    //string serialNum = regTxtSerialNo.Text;
+        //    string gender = "M";
+        //    string orgName;
+        //    string orgID;
 
-            GenerateClientNumber gen = new GenerateClientNumber();
-            string clientNumber = gen.getClientNumber();
+        //    GenerateClientNumber gen = new GenerateClientNumber();
+        //    string clientNumber = gen.getClientNumber();
 
-            bool message = valid.validation(name,surname,email, number,address, floorNo, buildingName, compType,make,model,
-                                        serialNum);
+        //    //bool message = valid.validation(name,surname,email, number,address, floorNo, buildingName, compType,make,model,
+        //                                //serialNum);
             
-                if (message == true)
-                {   
-                //Sending new client info to database
-                    if(comboOrganisation.Text=="New Organisation")
-                    {
-                        orgName = txtNewCompany.Text;
-                    }
-                    else
-                    {
-                        orgName = comboOrganisation.Text;
-                    }
-                    if (regRadMale.Checked == true)
-                    {
-                        gender = "M";
+        //        if (message == true)
+        //        {   
+        //        //Sending new client info to database
+        //            if(comboOrganisation.Text=="New Organisation")
+        //            {
+        //                orgName = txtNewCompany.Text;
+        //            }
+        //            else
+        //            {
+        //                orgName = comboOrganisation.Text;
+        //            }
+        //            if (regRadMale.Checked == true)
+        //            {
+        //                gender = "M";
 
-                    }
-                    else
-                    {
-                        gender = "F";
-                    }
+        //            }
+        //            else
+        //            {
+        //                gender = "F";
+        //            }
 
-                    using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
-                    {
-                        conn.Open();
+        //            using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
+        //            {
+        //                conn.Open();
                     
-                        using (SqlCommand cmd2 = new SqlCommand("SELECT* FROM organisation where name='" + orgName + "'", conn))
-                        {
-                            SqlDataReader reader = cmd2.ExecuteReader();
-                            reader.Read();
-                            orgID = reader["orgID"].ToString();
-                        reader.Close();
-                        using (SqlCommand cmd = new SqlCommand("INSERT INTO client(clientNumber,name, surname,gender,email,contactNumber,organisationID,address,building,floorNo) VALUES(@clientNumber,@name,@surname,@gender,@email,@contactNumber,@organisationID, @address, @building, @floor) ", conn))
+        //                using (SqlCommand cmd2 = new SqlCommand("SELECT* FROM organisation where name='" + orgName + "'", conn))
+        //                {
+        //                    SqlDataReader reader = cmd2.ExecuteReader();
+        //                    reader.Read();
+        //                    orgID = reader["orgID"].ToString();
+        //                reader.Close();
+        //                using (SqlCommand cmd = new SqlCommand("INSERT INTO client(clientNumber,name, surname,gender,email,contactNumber,organisationID,address,building,floorNo) VALUES(@clientNumber,@name,@surname,@gender,@email,@contactNumber,@organisationID, @address, @building, @floor) ", conn))
 
-                        {
-                            cmd.Parameters.AddWithValue("@clientNumber", clientNumber);
-                            cmd.Parameters.AddWithValue("@name", regTxtName.Text);
-                            cmd.Parameters.AddWithValue("@surname", regTxtSurname.Text);
-                            cmd.Parameters.AddWithValue("@gender", gender);
-                            cmd.Parameters.AddWithValue("@email", regTxtEmail.Text);
-                            cmd.Parameters.AddWithValue("@contactNumber", regTxtPhoneNo.Text);
-                            cmd.Parameters.AddWithValue("@address", address);
-                            cmd.Parameters.AddWithValue("@building", buildingName);
-                            cmd.Parameters.AddWithValue("@floor", floorNo);
-                            cmd.Parameters.AddWithValue("@organisationID", orgID);
+        //                {
+        //                    cmd.Parameters.AddWithValue("@clientNumber", clientNumber);
+        //                    cmd.Parameters.AddWithValue("@name", regTxtName.Text);
+        //                    cmd.Parameters.AddWithValue("@surname", regTxtSurname.Text);
+        //                    cmd.Parameters.AddWithValue("@gender", gender);
+        //                    cmd.Parameters.AddWithValue("@email", regTxtEmail.Text);
+        //                    cmd.Parameters.AddWithValue("@contactNumber", regTxtPhoneNo.Text);
+        //                    cmd.Parameters.AddWithValue("@address", address);
+        //                    cmd.Parameters.AddWithValue("@building", buildingName);
+        //                    cmd.Parameters.AddWithValue("@floor", floorNo);
+        //                    cmd.Parameters.AddWithValue("@organisationID", orgID);
 
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
+        //                    cmd.ExecuteNonQuery();
+        //                }
+        //            }
                         
-                        using (SqlCommand cmd = new SqlCommand("INSERT INTO devices(deviceID,deviceName,type,model,serialNumber) VALUES(@deviceID,@name,@type,@model,@serialNumber)", conn))
-                        {
-                            cmd.Parameters.AddWithValue("@deviceID",Convert.ToInt32(clientNumber));
-                            cmd.Parameters.AddWithValue("@name", regTxtDeviveName.Text);
-                            cmd.Parameters.AddWithValue("@type", regTxtType.Text);
-                            cmd.Parameters.AddWithValue("@model", regTxtModel.Text);
-                            cmd.Parameters.AddWithValue("@serialNumber", regTxtSerialNo.Text);
-                            cmd.ExecuteNonQuery();
+        //                using (SqlCommand cmd = new SqlCommand("INSERT INTO devices(deviceID,deviceName,type,model,serialNumber) VALUES(@deviceID,@name,@type,@model,@serialNumber)", conn))
+        //                {
+        //                    cmd.Parameters.AddWithValue("@deviceID",Convert.ToInt32(clientNumber));
+        //                    cmd.Parameters.AddWithValue("@name", regTxtDeviveName.Text);
+        //                    cmd.Parameters.AddWithValue("@type", regTxtType.Text);
+        //                    cmd.Parameters.AddWithValue("@model", regTxtModel.Text);
+        //                    cmd.Parameters.AddWithValue("@serialNumber", regTxtSerialNo.Text);
+        //                    cmd.ExecuteNonQuery();
 
-                        }
-                        //LoadClient();
-
-
-                        MessageBox.Show("New client succesfully registered!");
-
-                    }
-                }
+        //                }
+        //                //LoadClient();
 
 
-                else
-                {
-                    MessageBox.Show("Please fill in all the fields with the correct information");
-                }
+        //                MessageBox.Show("New client succesfully registered!");
+
+        //            }
+        //        }
+
+
+        //        else
+        //        {
+        //            MessageBox.Show("Please fill in all the fields with the correct information");
+        //        }
             
-        }
+        //}
 
         private void button5_Click(object sender, EventArgs e)
         {
@@ -204,7 +204,7 @@ namespace NetLog
             updateTxtDeviceName.Clear();
             updateTxtMake.Clear();
             UpdatecomboUnikNo.SelectedIndex = -1;
-            txtNewCompany.Clear();
+            //txtNewCompany.Clear();
             updateTxtDeviceName.Clear();
         }
 
@@ -227,59 +227,59 @@ namespace NetLog
                     {
                         conn.Open();
                         try {
-                            using (SqlCommand cmd = new SqlCommand("SELECT * from client where clientNumber = '" + id + "'", conn))
+                            using (SqlCommand cmd = new SqlCommand("SELECT * from staff where StaffNumber = '" + id + "'", conn))
                             {
                                 SqlDataReader reader = cmd.ExecuteReader();
                                 reader.Read();
-                                recTxtName.Text = reader["name"].ToString();
-                                recTxtSurname.Text = reader["surname"].ToString();
-                                recTxtEmail.Text = reader["email"].ToString();
-                                recTxtContactNo.Text = reader["contactNumber"].ToString();
-                                recTxtAddress.Text = reader["address"].ToString();
-                                recTxtBuilding.Text = reader["building"].ToString();
-                                recTxtFloorNo.Text = reader["floorNo"].ToString();
+                                recTxtName.Text = reader["Name"].ToString();
+                                recTxtSurname.Text = reader["Surname"].ToString();
+                                recTxtEmail.Text = reader["Email"].ToString();
+                                //recTxtContactNo.Text = reader["contactNumber"].ToString();
+                                //recTxtAddress.Text = reader["address"].ToString();
+                                //recTxtBuilding.Text = reader["building"].ToString();
+                                //recTxtFloorNo.Text = reader["floorNo"].ToString();
 
                                 reader.Close();
                             }
                         }
-                        catch (InvalidOperationException)
+                        catch (Exception ex)
                         {
-                            MessageBox.Show("The number you entered does not exit in the database.Try again");
+                            MessageBox.Show("The number you entered does not exit in the database.Try again" + "r/n " + ex.Message);
                         }
 
                     }
                 }
-                else
-                {
-                    string clientName = refNum;
-                    string inputName = clientName.Substring(clientName.IndexOf(' ') + 1);
-                    using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
-                    {
-                        conn.Open();
-                        try {
-                            using (SqlCommand cmd = new SqlCommand("SELECT * from client where name = '" + inputName + "'", conn))
-                            {
-                                SqlDataReader reader = cmd.ExecuteReader();
-                                reader.Read();
-                                recTxtName.Text = reader["name"].ToString();
-                                recTxtSurname.Text = reader["surname"].ToString();
-                                recTxtEmail.Text = reader["email"].ToString();
-                                recTxtContactNo.Text = reader["contactNumber"].ToString();
-                                recTxtAddress.Text = reader["address"].ToString();
-                                recTxtBuilding.Text = reader["building"].ToString();
-                                recTxtFloorNo.Text = reader["floorNo"].ToString();
+                //else
+                //{
+                //    string clientName = refNum;
+                //    string inputName = clientName.Substring(clientName.IndexOf(' ') + 1);
+                //    using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
+                //    {
+                //        conn.Open();
+                //        try {
+                //            using (SqlCommand cmd = new SqlCommand("SELECT * from Staff where name = '" + inputName + "'", conn))
+                //            {
+                //                SqlDataReader reader = cmd.ExecuteReader();
+                //                reader.Read();
+                //                recTxtName.Text = reader["name"].ToString();
+                //                recTxtSurname.Text = reader["surname"].ToString();
+                //                recTxtEmail.Text = reader["email"].ToString();
+                //                //recTxtContactNo.Text = reader["contactNumber"].ToString();
+                //                //recTxtAddress.Text = reader["address"].ToString();
+                //                //recTxtBuilding.Text = reader["building"].ToString();
+                //                //recTxtFloorNo.Text = reader["floorNo"].ToString();
 
-                                reader.Close();
+                //                reader.Close();
 
-                            }
-                        }
-                        catch (InvalidOperationException)
-                        {
-                            MessageBox.Show("The name you entered does not exit in the database.Please Try again");
-                        }
+                //            }
+                //        }
+                //        catch (InvalidOperationException)
+                //        {
+                //            MessageBox.Show("The name you entered does not exit in the database.Please Try again");
+                //        }
 
-                    }
-                }
+                //    }
+                //}
             }
             else
             {
@@ -602,104 +602,104 @@ namespace NetLog
             //LoadClient();
             //LoadCalls();
             LoadStaffUser();
-            regBtnClear.Enabled = false;
-            regBtnSave.Enabled = false;
-            regTxtAddress.Enabled = false;
-            regTxtBuilding.Enabled = false;
-            regTxtDeviveName.Enabled = false;
-            regTxtEmail.Enabled = false;
-            regTxtFloorNo.Enabled = false;
-            regTxtModel.Enabled = false;
-            regTxtName.Enabled = false;
-            regTxtPhoneNo.Enabled = false;
-            regTxtSerialNo.Enabled = false;
-            regTxtSurname.Enabled = false;
-            regTxtType.Enabled = false;
-            regRadMale.Enabled = false;
-            regRadFemale.Enabled = false;
-            regTxtOrgEmail.Enabled = false;
+            //regBtnClear.Enabled = false;
+            //regBtnSave.Enabled = false;
+            //regTxtAddress.Enabled = false;
+            //regTxtBuilding.Enabled = false;
+            //regTxtDeviveName.Enabled = false;
+            //regTxtEmail.Enabled = false;
+            //regTxtFloorNo.Enabled = false;
+            //regTxtModel.Enabled = false;
+            //regTxtName.Enabled = false;
+            //regTxtPhoneNo.Enabled = false;
+            //regTxtSerialNo.Enabled = false;
+            //regTxtSurname.Enabled = false;
+            //regTxtType.Enabled = false;
+            //regRadMale.Enabled = false;
+            //regRadFemale.Enabled = false;
+            //regTxtOrgEmail.Enabled = false;
         }
         
-        private void button6_Click(object sender, EventArgs e)
-        {
-            string name = txtNewCompany.Text;
-            string email = regTxtOrgEmail.Text;
-            string password = txtNewCompany.Text + "123";
+        //private void button6_Click(object sender, EventArgs e)
+        //{
+        //    string name = txtNewCompany.Text;
+        //    string email = regTxtOrgEmail.Text;
+        //    string password = txtNewCompany.Text + "123";
 
-            if ((txtNewCompany.Text != "") || (regTxtOrgEmail.Text != ""))
-            {
+        //    if ((txtNewCompany.Text != "") || (regTxtOrgEmail.Text != ""))
+        //    {
                
-                    using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
-                    {
-                        conn.Open();
-                        using (SqlCommand cmd = new SqlCommand("INSERT INTO organisation(name,email,password) VALUES(@name,@email,@password) ", conn))
+        //            using (SqlConnection conn = new SqlConnection(CheckDatabaseConnection.connectionStr))
+        //            {
+        //                conn.Open();
+        //                using (SqlCommand cmd = new SqlCommand("INSERT INTO organisation(name,email,password) VALUES(@name,@email,@password) ", conn))
 
-                        {
-                            cmd.Parameters.AddWithValue("@name", name);
-                            cmd.Parameters.AddWithValue("@email", email);
-                            cmd.Parameters.AddWithValue("@password", password);
-                            comboOrganisation.Text = txtNewCompany.Text;
-                            cmd.ExecuteNonQuery();
-                        }
-                        conn.Close();
-                    }
+        //                {
+        //                    cmd.Parameters.AddWithValue("@name", name);
+        //                    cmd.Parameters.AddWithValue("@email", email);
+        //                    cmd.Parameters.AddWithValue("@password", password);
+        //                    comboOrganisation.Text = txtNewCompany.Text;
+        //                    cmd.ExecuteNonQuery();
+        //                }
+        //                conn.Close();
+        //            }
 
-                    //LoadOrganisation();
-                    comboOrganisation.Text = txtNewCompany.Text;
-                    MessageBox.Show("New Organisation succesfully saved!");
-            }
-            else
-            {
-                MessageBox.Show("Please fill in all the fields with the correct information");
-            }
-        }
+        //            //LoadOrganisation();
+        //            comboOrganisation.Text = txtNewCompany.Text;
+        //            MessageBox.Show("New Organisation succesfully saved!");
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Please fill in all the fields with the correct information");
+        //    }
+        //}
 
-        private void comboOrganisation_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if((comboOrganisation.SelectedIndex == 0))
-            {
-                btnSaveNewCompany.Enabled = true;
-                txtNewCompany.Enabled = true;
-                regBtnClear.Enabled = true;
-                regBtnSave.Enabled = true;
-                regTxtAddress.Enabled = true;
-                regTxtBuilding.Enabled = true;
-                regTxtDeviveName.Enabled = true;
-                regTxtEmail.Enabled = true;
-                regTxtFloorNo.Enabled = true;
-                regTxtModel.Enabled = true;
-                regTxtName.Enabled = true;
-                regTxtPhoneNo.Enabled = true;
-                regTxtSerialNo.Enabled = true;
-                regTxtSurname.Enabled = true;
-                regTxtType.Enabled = true;
-                regRadMale.Enabled = true;
-                regRadFemale.Enabled = true;
-                regTxtOrgEmail.Enabled = true;
+        //private void comboOrganisation_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if((comboOrganisation.SelectedIndex == 0))
+        //    {
+        //        btnSaveNewCompany.Enabled = true;
+        //        txtNewCompany.Enabled = true;
+        //        regBtnClear.Enabled = true;
+        //        regBtnSave.Enabled = true;
+        //        regTxtAddress.Enabled = true;
+        //        regTxtBuilding.Enabled = true;
+        //        regTxtDeviveName.Enabled = true;
+        //        regTxtEmail.Enabled = true;
+        //        regTxtFloorNo.Enabled = true;
+        //        regTxtModel.Enabled = true;
+        //        regTxtName.Enabled = true;
+        //        regTxtPhoneNo.Enabled = true;
+        //        regTxtSerialNo.Enabled = true;
+        //        regTxtSurname.Enabled = true;
+        //        regTxtType.Enabled = true;
+        //        regRadMale.Enabled = true;
+        //        regRadFemale.Enabled = true;
+        //        regTxtOrgEmail.Enabled = true;
 
-            }
-            else if((comboOrganisation.SelectedIndex != 0))
-            {
-                btnSaveNewCompany.Enabled =false;
-                txtNewCompany.Enabled = false;
-                regTxtOrgEmail.Enabled = false;
-                regBtnClear.Enabled = true;
-                regBtnSave.Enabled = true;
-                regTxtAddress.Enabled = true;
-                regTxtBuilding.Enabled = true;
-                regTxtDeviveName.Enabled = true;
-                regTxtEmail.Enabled = true;
-                regTxtFloorNo.Enabled = true;
-                regTxtModel.Enabled = true;
-                regTxtName.Enabled = true;
-                regTxtPhoneNo.Enabled = true;
-                regTxtSerialNo.Enabled = true;
-                regTxtSurname.Enabled = true;
-                regTxtType.Enabled = true;
-                regRadMale.Enabled = true;
-                regRadFemale.Enabled = true;
-            }
-        }
+        //    }
+        //    else if((comboOrganisation.SelectedIndex != 0))
+        //    {
+        //        btnSaveNewCompany.Enabled =false;
+        //        txtNewCompany.Enabled = false;
+        //        regTxtOrgEmail.Enabled = false;
+        //        regBtnClear.Enabled = true;
+        //        regBtnSave.Enabled = true;
+        //        regTxtAddress.Enabled = true;
+        //        regTxtBuilding.Enabled = true;
+        //        regTxtDeviveName.Enabled = true;
+        //        regTxtEmail.Enabled = true;
+        //        regTxtFloorNo.Enabled = true;
+        //        regTxtModel.Enabled = true;
+        //        regTxtName.Enabled = true;
+        //        regTxtPhoneNo.Enabled = true;
+        //        regTxtSerialNo.Enabled = true;
+        //        regTxtSurname.Enabled = true;
+        //        regTxtType.Enabled = true;
+        //        regRadMale.Enabled = true;
+        //        regRadFemale.Enabled = true;
+        //    }
+        //}
 
         private void closeBtnSave_Click(object sender, EventArgs e)
         {
